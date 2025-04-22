@@ -1,4 +1,5 @@
 from airflow import DAG
+import pendulum
 from airflow.operators.python import PythonOperator
 from datetime import datetime, timedelta
 from scripts import load_stg
@@ -7,9 +8,14 @@ from scripts import load_stg
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
-    'retries': 1,
-    'retry_delay': timedelta(minutes=5),
+    'email': ['funchozv@icloud.com'],
+    'email_on_failure': True,
+    'email_on_retry': False,
+    'retries': 2,
+    'retry_delay': timedelta(minutes=2),
 }
+
+local_tz = pendulum.timezone("Europe/Moscow")
 
 with DAG(
     'hourly_etl_pipeline',
@@ -17,8 +23,8 @@ with DAG(
     description='Часовая загрузка S3 -> stg -> ods -> dds',
     schedule_interval='@hourly',
     max_active_runs=1,
-    start_date=datetime(2025, 4, 21),
-    catchup=False,
+    start_date=datetime(2025, 4, 4, tzinfo=local_tz),
+    catchup=True,
     tags=['auto', 'etl']
 ) as dag:
 

@@ -26,7 +26,6 @@ services:
       - PYTHONPATH=/usr/local/airflow
     volumes:
       - ./dags:/usr/local/airflow/dags
-      - ./logs:/usr/local/airflow/logs
       - ./scripts:/usr/local/airflow/scripts
     ports:
       - "8080:8080"
@@ -43,7 +42,6 @@ services:
       - PYTHONPATH=/usr/local/airflow
     volumes:
       - ./dags:/usr/local/airflow/dags
-      - ./logs:/usr/local/airflow/logs
       - ./scripts:/usr/local/airflow/scripts
     entrypoint: airflow scheduler
 

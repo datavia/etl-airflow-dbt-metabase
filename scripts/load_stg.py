@@ -31,6 +31,7 @@ def run(execution_date: str):
     for event in event_types:
         s3_key = f"year={year}/month={month}/day={day}/hour={hour}/{event}.jsonl.zip"
         print(f"Processing file: {s3_key}")
+        load_id = str(uuid.uuid4())
 
         try:
             s3_obj = s3.get_key(s3_key, bucket_name)
@@ -41,10 +42,9 @@ def run(execution_date: str):
                     with zipped_file.open(name) as file:
                         for line in file:
                             row = json.loads(line.decode('utf-8'))
-                            load_id = str(uuid.uuid4())
                             # Вставка данных
                             cursor.execute(
-                                f"INSERT INTO stg.{event} (load_id, source_name, json_data) VALUES (%s, %s, %s)",
+                                f"INSERT INTO stg.stg_{event} (load_id, source_name, json_data) VALUES (%s, %s, %s)",
                                 (load_id, s3_key, json.dumps(row))
                             )
             print(f"Processed successfully: {s3_key}")
