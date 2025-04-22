@@ -25,4 +25,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ArinaExpy/lab08_image:latest
+          tags: arinaexpy/project_lab08:latest
