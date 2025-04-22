@@ -12,7 +12,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
 
   airflow-webserver:
     image: arinaexpy/project_lab08:latest
@@ -61,3 +61,6 @@ services:
                sleep 10;
                airflow db migrate && 
                airflow users create --username admin --firstname Admin --lastname Admin --role Admin --email admin@example.com --password admin"
+
+volumes:
+  postgres_data:
