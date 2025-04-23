@@ -53,19 +53,19 @@
 ### Укажи имя своей ветки для Git Sync
 В файле .env:
 Было:
-    ```
-    GIT_BRANCH=main
-    ```
+```
+GIT_BRANCH=main
+```
 Стало:
-    ```
-    GIT_BRANCH=feature/my-cool-change
-    ```
+```
+GIT_BRANCH=feature/my-cool-change
+```
 
 ### Запустить Airflow
 После запуска Airflow будет подгружать DAG-и из GitHub (из твоей ветки) и показывать их в интерфейсе: https://localhost:8080
-    ```bash
-    docker compose up --build -d
-    ```
+```bash
+docker compose up --build -d
+```
 
 ### Создай свою ветку
 ```bash
