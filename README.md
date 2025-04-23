@@ -21,22 +21,22 @@
 
 ### Клонируй репозиторий
 
-    1. Убедись, что у тебя есть SSH-ключ
-        Проверь наличие ключей:
-        ```bash
-        ls ~/.ssh/id_rsa.pub
-        ```
-        Если ключа нет - создай его:
-        ```bash
-        ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
-        ```
-        (просто жми Enter на всех шагах)
+1. Убедись, что у тебя есть SSH-ключ
+    Проверь наличие ключей:
+    ```bash
+    ls ~/.ssh/id_rsa.pub
+
+    Если ключа нет - создай его:
+    ```bash
+    ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+    (просто жми Enter на всех шагах)
 
     2. Добавь публичный ключ в GitHub
         1. Скопируй ключ:
         ```bash
         cat ~/.ssh/id_rsa.pub
-        ```
+
         2. Перейди в GitHub -> Settings -> SSH and GPG keys
         3. Нажми "New SSH key"
         4. Вставь ключ и нажми "Add SSH key"
@@ -44,11 +44,11 @@
         ```bash
         git clone git@github.com:ArinaExpy/project_lab08.git
         cd project_lab08
-        ```
+
     4. (Опционально) Проверь, что всё работает
         ```bash
         ssh -T git@github.com
-        ```
+
      
 
 
