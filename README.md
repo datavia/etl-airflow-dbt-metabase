@@ -81,8 +81,10 @@ graph TD
     GitSync --> Webserver
     GitSync --> Scheduler
 
-    Scheduler -->|Connects| PostgreSQL[(Remote PostgreSQL DB)]
-    Webserver -->|Connects| PostgreSQL
+    Scheduler -->|Connects and runs DAGs| PostgreSQL[(Remote PostgreSQL DB)]
+    Webserver -->|Connects and runs DAGs| PostgreSQL
+
+    PostgreSQL --> Metabase[Metabase Dashboards]
 
     subgraph Docker_Compose
         Webserver[Airflow Webserver]
