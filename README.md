@@ -68,10 +68,10 @@
     ```
 
 ### Создай свою ветку
-    ```bash
-    git checkout -b feature/my-cool-change
-    git push --set-upstream origin feature/my-cool-change
-    ```
+```bash
+git checkout -b feature/my-cool-change
+git push --set-upstream origin feature/my-cool-change
+```
 Важно: локальные изменения не попадут в Airflow, пока ты не запушишь их в Git!
 
 # Схема Инфраструктуры
