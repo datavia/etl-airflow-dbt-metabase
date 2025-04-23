@@ -53,8 +53,9 @@
 
 
 ### Укажи имя своей ветки для Git Sync
+
     ```env
-    GIT_SYNC_BRANCH=feature/my-cool-change
+    GIT_BRANCH=feature/my-cool-change
     ```
 
 ### Запустить Airflow
