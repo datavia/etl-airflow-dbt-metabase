@@ -23,7 +23,8 @@ services:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
       - AIRFLOW__WEBSERVER__SECRET_KEY=mysecret
-      - PYTHONPATH=/usr/local/airflow
+      - AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/dags/repo/dags
+      - PYTHONPATH=/opt/airflow/dags/repo
     volumes:
       - dags:/opt/airflow/dags
     ports:
@@ -38,7 +39,8 @@ services:
     environment:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
-      - PYTHONPATH=/usr/local/airflow
+      - AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/dags/repo/dags
+      - PYTHONPATH=/opt/airflow/dags/repo
     volumes:
       - dags:/opt/airflow/dags
     entrypoint: airflow scheduler
@@ -50,7 +52,8 @@ services:
     environment:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
-      - PYTHONPATH=/usr/local/airflow
+      - AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/dags/repo/dags
+      - PYTHONPATH=/opt/airflow/dags/repo
     volumes:
       - dags:/opt/airflow/dags
     entrypoint: >
@@ -61,12 +64,15 @@ services:
 
   gitsync:
     image: k8s.gcr.io/git-sync/git-sync:v3.6.2
+    user: "0:0"
     environment:
       - GIT_SYNC_REPO=${GIT_REPO}
       - GIT_SYNC_BRANCH=${GIT_BRANCH}
       - GIT_SYNC_ROOT=/git
       - GIT_SYNC_DEST=repo 
       - GIT_SYNC_WAIT=10
+      - GIT_SYNC_USERNAME=${GIT_USERNAME}
+      - GIT_SYNC_PASSWORD=${GIT_PASSWORD}
     volumes:
       - dags:/git 
 
