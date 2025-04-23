@@ -49,8 +49,6 @@
     ```bash
     ssh -T git@github.com
     ```
-     
-
 
 ### Укажи имя своей ветки для Git Sync
 В файле .env:
@@ -75,3 +73,18 @@
     git push --set-upstream origin feature/my-cool-change
     ```
 Важно: локальные изменения не попадут в Airflow, пока ты не запушишь их в Git!
+
+```mermaid
+graph TD
+    GitHub[GitHub Repository] -->|Sync DAGs| GitSync
+    GitSync --> Airflow[Airflow (Docker Compose)]
+    Airflow -->|Runs DAGs| PostgreSQL[(PostgreSQL DB)]
+    Airflow --> Scheduler[Airflow Scheduler]
+    Airflow --> Webserver[Airflow Webserver]
+    Airflow --> Worker[Airflow Worker]
+    subgraph Docker Compose
+        Airflow
+        Scheduler
+        Webserver
+        Worker
+    end
