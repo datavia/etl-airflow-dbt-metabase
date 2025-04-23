@@ -53,7 +53,11 @@
 
 
 ### Укажи имя своей ветки для Git Sync
-
+Было:
+    ```env
+    GIT_BRANCH=main
+    ```
+Стало:
     ```env
     GIT_BRANCH=feature/my-cool-change
     ```
