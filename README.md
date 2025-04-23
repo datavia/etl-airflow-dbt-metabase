@@ -76,15 +76,15 @@
 
 ```mermaid
 graph TD
-    GitHub[GitHub Repository] -->|Sync DAGs| GitSync
-    GitSync --> Airflow
-    Airflow -->|Runs DAGs| PostgreSQL
-    Airflow --> Scheduler
-    Airflow --> Webserver
-    Airflow --> Worker
-    subgraph Docker Compose
-        Airflow
-        Scheduler
-        Webserver
-        Worker
+    GitHub[GitHub_Repository] -->|Sync DAGs| GitSync
+    GitSync --> Webserver
+    GitSync --> Scheduler
+
+    Scheduler -->|Connects| PostgreSQL[(Remote PostgreSQL DB)]
+    Webserver -->|Connects| PostgreSQL
+
+    subgraph Docker_Compose
+        Webserver[Airflow Webserver]
+        Scheduler[Airflow Scheduler]
+        GitSync[GitSync]
     end
