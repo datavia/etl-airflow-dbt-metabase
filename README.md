@@ -23,32 +23,32 @@
 
 1. Убедись, что у тебя есть SSH-ключ
     Проверь наличие ключей:
-    ```bash
-    ls ~/.ssh/id_rsa.pub
-
+        ```bash
+        ls ~/.ssh/id_rsa.pub
+        ```
     Если ключа нет - создай его:
-    ```bash
-    ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
-
+        ```bash
+        ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+        ```
     (просто жми Enter на всех шагах)
 
-    2. Добавь публичный ключ в GitHub
-        1. Скопируй ключ:
+2. Добавь публичный ключ в GitHub
+    1. Скопируй ключ:
         ```bash
         cat ~/.ssh/id_rsa.pub
-
-        2. Перейди в GitHub -> Settings -> SSH and GPG keys
-        3. Нажми "New SSH key"
-        4. Вставь ключ и нажми "Add SSH key"
-    3. Клонируй проект:
-        ```bash
-        git clone git@github.com:ArinaExpy/project_lab08.git
-        cd project_lab08
-
-    4. (Опционально) Проверь, что всё работает
-        ```bash
-        ssh -T git@github.com
-
+        ```
+    2. Перейди в GitHub -> Settings -> SSH and GPG keys
+    3. Нажми "New SSH key"
+    4. Вставь ключ и нажми "Add SSH key"
+3. Клонируй проект:
+    ```bash
+    git clone git@github.com:ArinaExpy/project_lab08.git
+    cd project_lab08
+    ```
+4. (Опционально) Проверь, что всё работает
+    ```bash
+    ssh -T git@github.com
+    ```
      
 
 
@@ -63,7 +63,12 @@
     ```bash
     docker compose up --build -d
     ```
-После запуска Airflow будет подгружать DAG-и из GitHub (из твоей ветки)
-и показывать их в интерфейсе: https://localhost:8080
+    После запуска Airflow будет подгружать DAG-и из GitHub (из твоей ветки)
+    и показывать их в интерфейсе: https://localhost:8080
 
-Важно: локальные изменения не попадут в Airflow, пока ты не запушишь их в Git!
+### Создай свою ветку
+    ```bash
+    git checkout -b feature/my-cool-change
+    git push --set-upstream origin feature/my-cool-change
+    ```
+    Важно: локальные изменения не попадут в Airflow, пока ты не запушишь их в Git!
