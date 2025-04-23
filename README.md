@@ -90,6 +90,7 @@ graph TD
         Scheduler[Airflow Scheduler]
         GitSync[GitSync]
     end
+```
 
 # Схема Базы данных 
 
@@ -113,3 +114,4 @@ flowchart TD
     stg_geo_events --> ods_geo_events
     stg_device_events --> ods_device_events
     stg_location_events --> ods_location_events
+```
