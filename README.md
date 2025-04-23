@@ -50,8 +50,7 @@
     ssh -T git@github.com
     ```
 
-### Укажи имя своей ветки для Git Sync
-В файле .env:
+### Укажи имя своей ветки для Git Sync в .env
 Было:
 ```
 GIT_BRANCH=main
