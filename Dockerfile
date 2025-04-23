@@ -7,6 +7,7 @@ RUN pip install --upgrade pip && \
     --constraint "https://raw.githubusercontent.com/apache/airflow/constraints-2.9.2/constraints-3.8.txt"
 
 WORKDIR /usr/local/airflow
+
 ENV AIRFLOW_HOME=/usr/local/airflow
 ENV PATH=/root/.local/bin:$PATH
 

@@ -25,8 +25,7 @@ services:
       - AIRFLOW__WEBSERVER__SECRET_KEY=mysecret
       - PYTHONPATH=/usr/local/airflow
     volumes:
-      - ./dags:/usr/local/airflow/dags
-      - ./scripts:/usr/local/airflow/scripts
+      - dags:/opt/airflow/dags
     ports:
       - "8080:8080"
     entrypoint: airflow webserver
@@ -41,8 +40,7 @@ services:
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
       - PYTHONPATH=/usr/local/airflow
     volumes:
-      - ./dags:/usr/local/airflow/dags
-      - ./scripts:/usr/local/airflow/scripts
+      - dags:/opt/airflow/dags
     entrypoint: airflow scheduler
 
   airflow-init:
@@ -54,13 +52,24 @@ services:
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres/airflow
       - PYTHONPATH=/usr/local/airflow
     volumes:
-      - ./dags:/usr/local/airflow/dags
-      - ./scripts:/usr/local/airflow/scripts
+      - dags:/opt/airflow/dags
     entrypoint: >
       bash -c "echo 'Waiting for Postgres...';
                sleep 10;
                airflow db migrate && 
                airflow users create --username admin --firstname Admin --lastname Admin --role Admin --email admin@example.com --password admin"
 
+  gitsync:
+    image: k8s.gcr.io/git-sync/git-sync:v3.6.2
+    environment:
+      - GIT_SYNC_REPO=${GIT_REPO}
+      - GIT_SYNC_BRANCH=${GIT_BRANCH}
+      - GIT_SYNC_ROOT=/git
+      - GIT_SYNC_DEST=repo 
+      - GIT_SYNC_WAIT=10
+    volumes:
+      - dags:/git 
+
 volumes:
   postgres_data:
+  dags:

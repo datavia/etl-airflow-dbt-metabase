@@ -24,7 +24,7 @@ with DAG(
     schedule_interval='@hourly',
     max_active_runs=1,
     start_date=datetime(2025, 4, 4, tzinfo=local_tz),
-    catchup=True,
+    catchup=False,
     tags=['auto', 'etl']
 ) as dag:
 
@@ -46,6 +46,4 @@ with DAG(
     #     op_kwargs={"execution_date":"{{ execution_date.isoformat() }}"}
     # )
 
-    stg_task 
-    
-    # >> ods_task >> dds_task
+    stg_task
