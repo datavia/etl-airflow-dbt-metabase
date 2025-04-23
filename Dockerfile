@@ -14,7 +14,7 @@ ENV PATH=/root/.local/bin:$PATH
 # меняем тип эксзекутора для Airflow на LocalExecutor (запускает задачи параллельно, но только на одной машине)
 ENV AIRFLOW__CORE__EXECUTOR=LocalExecutor
 # указываем подключение к постгре
-ENV AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://airflow:airflow@postgres:5432/airflow
+ENV AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/airflow
 # отключаем загрузку примеров дагов
 ENV AIRFLOW__CORE__LOAD_EXAMPLES=False
 # отключаем загрузку соединений по умолчанию
