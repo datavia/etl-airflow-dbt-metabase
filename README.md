@@ -74,6 +74,8 @@
     ```
 Важно: локальные изменения не попадут в Airflow, пока ты не запушишь их в Git!
 
+# Схема Инфраструктуры
+
 ```mermaid
 graph TD
     GitHub[GitHub_Repository] -->|Sync DAGs| GitSync
@@ -88,3 +90,26 @@ graph TD
         Scheduler[Airflow Scheduler]
         GitSync[GitSync]
     end
+
+# Схема Базы данных 
+
+```mermaid
+flowchart TD
+    subgraph STG [Stage Layer]
+        stg_browser_events[stg.stg_browser_events]
+        stg_geo_events[stg.stg_geo_events]
+        stg_device_events[stg.stg_device_events]
+        stg_location_events[stg.stg_location_events]
+    end
+
+    subgraph ODS [ODS Layer]
+        ods_browser_events[ods.ods_browser_events]
+        ods_geo_events[ods.ods_geo_events]
+        ods_device_events[ods.ods_device_events]
+        ods_location_events[ods.ods_location_events]
+    end
+
+    stg_browser_events --> ods_browser_events
+    stg_geo_events --> ods_geo_events
+    stg_device_events --> ods_device_events
+    stg_location_events --> ods_location_events
