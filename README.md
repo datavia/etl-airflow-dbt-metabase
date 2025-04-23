@@ -53,22 +53,20 @@
 
 
 ### Укажи имя своей ветки для Git Sync
-
     ```env
     GIT_SYNC_BRANCH=feature/my-cool-change
     ```
 
 ### Запустить Airflow
-
     ```bash
     docker compose up --build -d
     ```
-    После запуска Airflow будет подгружать DAG-и из GitHub (из твоей ветки)
-    и показывать их в интерфейсе: https://localhost:8080
+После запуска Airflow будет подгружать DAG-и из GitHub (из твоей ветки)
+и показывать их в интерфейсе: https://localhost:8080
 
 ### Создай свою ветку
     ```bash
     git checkout -b feature/my-cool-change
     git push --set-upstream origin feature/my-cool-change
     ```
-    Важно: локальные изменения не попадут в Airflow, пока ты не запушишь их в Git!
+Важно: локальные изменения не попадут в Airflow, пока ты не запушишь их в Git!
