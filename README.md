@@ -59,12 +59,11 @@
     ```
 
 ### Запустить Airflow
+    После запуска Airflow будет подгружать DAG-и из GitHub (из твоей ветки) и показывать их в интерфейсе: https://localhost:8080
     ```bash
     docker compose up --build -d
     ```
-После запуска Airflow будет подгружать DAG-и из GitHub (из твоей ветки)
-и показывать их в интерфейсе: https://localhost:8080
-
+    
 ### Создай свою ветку
     ```bash
     git checkout -b feature/my-cool-change
