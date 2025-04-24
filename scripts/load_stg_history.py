@@ -63,7 +63,7 @@ def run(start_date: str, end_date: str, event_type: str):
             
             if rows:
                 cursor.executemany(
-                    f"INSERT INTO stg.stg_{event_type}_new (load_id, source_name, json_data) VALUES (%s, %s, %s)",
+                    f"INSERT INTO stg.stg_{event_type} (load_id, source_name, json_data) VALUES (%s, %s, %s)",
                     rows
                 )
                 print(f"Inserted {len(rows)} rows for {s3_key}")
@@ -74,27 +74,3 @@ def run(start_date: str, end_date: str, event_type: str):
     cursor.close()
     conn_pg.close()
     print("All data loaded successfully")
-
-
-def finalize_tables(event_type: str):
-    pg = PostgresHook(postgres_conn_id='postgresql_lab08')
-    conn_pg = pg.get_conn()
-    cursor = conn_pg.cursor()
-
-    new_table = f"stg.stg_{event_type}_new"
-    prod_table = f"stg.stg_{event_type}"
-    old_table = f"stg.stg_{event_type}_old"
-
-    print(f"Finalizing table: {event_type}")
-
-    try:
-        cursor.execute(f"DROP TABLE IF EXISTS {old_table}")
-        cursor.execute(f"ALTER TABLE IF EXISTS {prod_table} RENAME TO {old_table}")
-        cursor.execute(f"ALTER TABLE IF EXISTS {new_table} RENAME TO {prod_table}")
-        print("Swapped old and new tables.")
-    except Exception as e:
-        print(f"Error finalizing table {event_type}: {e}")
-
-    conn_pg.comit()
-    cursor.close()
-    conn_pg.close()
