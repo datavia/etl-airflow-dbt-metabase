@@ -4,7 +4,6 @@ from airflow.operators.python import PythonOperator
 from airflow.operators.dummy_operator import DummyOperator
 from datetime import datetime, timedelta
 from scripts import load_stg
-from functools import partial
 # , build_ods, build_dds
 
 default_args = {
@@ -35,7 +34,11 @@ with DAG(
     for event in event_types:
         task = PythonOperator(
             task_id=f'load_stg_{event}',
-            python_callable=partial(load_stg.run, event_type=event, execution_date="{{ execution_date.isoformat() }}"),
+            python_callable=load_stg.run,
+            op_kwargs={
+                'event_type':event, 
+                'execution_date':"{{ execution_date.isoformat() }}",
+            }
         )
         stg_tasks.append(task)
 
