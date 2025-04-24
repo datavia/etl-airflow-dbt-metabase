@@ -52,4 +52,4 @@ with DAG(
     start = DummyOperator(task_id="start",dag=dag)
     end = DummyOperator(task_id="end",dag=dag)
 
-    start >> stg_tasks >> [finalize_tasks] >> end 
+    start >> stg_tasks >> finalize_tasks >> end 
