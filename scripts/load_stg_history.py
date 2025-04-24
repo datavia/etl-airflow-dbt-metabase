@@ -15,10 +15,6 @@ def run_with_variables(event_type: str):
         print("Dates not set in variables - skipping.")
     else:
         run(start_date, end_date, event_type)
-
-        # Delete variables when loaded.
-        Variable.set("lab08_start_date", "")
-        Variable.set("lab08_end_date", "")
     
 
 def run(start_date: str, end_date: str, event_type: str):
