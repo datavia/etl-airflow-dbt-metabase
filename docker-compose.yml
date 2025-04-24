@@ -25,6 +25,7 @@ services:
       - PYTHONPATH=/opt/airflow/dags/repo
     volumes:
       - dags:/opt/airflow/dags
+      - ./airflow_logs:/usr/local/airflow/logs
     ports:
       - "8080:8080"
     entrypoint: airflow webserver
@@ -41,6 +42,7 @@ services:
       - PYTHONPATH=/opt/airflow/dags/repo
     volumes:
       - dags:/opt/airflow/dags
+      - ./airflow_logs:/usr/local/airflow/logs
     entrypoint: airflow scheduler
 
   airflow-init:
@@ -63,6 +65,7 @@ services:
     volumes:
       - ./entrypoint.sh:/entrypoint.sh
       - dags:/opt/airflow/dags
+      - ./airflow_logs:/usr/local/airflow/logs
     entrypoint: /entrypoint.sh
 
   gitsync:

@@ -17,15 +17,13 @@ default_args = {
     'retry_delay': timedelta(minutes=2),
 }
 
-local_tz = pendulum.timezone("Europe/Moscow")
-
 with DAG(
     'history_etl_pipeline',
     default_args=default_args,
     description='Историческая загрузка S3 -> stg -> ods -> dds',
     schedule_interval=None,
     max_active_runs=1,
-    start_date=datetime(2025, 4, 4, tzinfo=local_tz),
+    start_date=datetime(2025, 4, 4),
     catchup=False,
     tags=['manual', 'etl']
 ) as dag:
