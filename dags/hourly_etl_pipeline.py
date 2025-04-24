@@ -35,7 +35,7 @@ with DAG(
     for event in event_types:
         task = PythonOperator(
             task_id=f'load_stg_{event}',
-            python_callable=partial(load_stg.run, event_type=event),
+            python_callable=partial(load_stg.run, event_type=event, execution_date="{{ execution_date.isoformat() }}"),
         )
         stg_tasks.append(task)
 
