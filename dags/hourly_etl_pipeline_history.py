@@ -53,5 +53,6 @@ with DAG(
     end = DummyOperator(task_id="end",dag=dag)
 
     start >> stg_tasks 
-    stg_tasks >> finalize_tasks 
+    for stg_task, finalize_task in zip(stg_tasks, finalize_tasks):
+        stg_task >> finalize_task
     finalize_tasks >> end 
