@@ -45,7 +45,7 @@ def run(execution_date: str, event_type: str):
         
         if rows:
             cursor.executemany(
-                f"INSERT INTO stg.stg_{event_type}_new (load_id, source_name, json_data) VALUES (%s, %s, %s)",
+                f"INSERT INTO stg.stg_{event_type} (load_id, source_name, json_data) VALUES (%s, %s, %s)",
                 rows
             )
             print(f"Inserted {len(rows)} rows for {s3_key}")
