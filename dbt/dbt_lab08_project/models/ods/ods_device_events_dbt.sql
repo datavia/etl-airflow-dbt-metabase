@@ -1,7 +1,7 @@
 {{ config(materialized='incremental', schema='ods') }}
 
 with sources as (select distinct source_name
-				   from mart_ods.ods_browser_events_dbt)
+				   from mart_ods.ods_device_events_dbt)
 select e.source_name,
 		left(e.source_name, length(e.source_name)-24) source_pref, -- минус длина строки /device_events.jsonl.zip
        (json_data->>'click_id')::uuid click_id,
