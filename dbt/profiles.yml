@@ -1,0 +1,12 @@
+dbt_lab08_project:
+  outputs:
+    dev:
+      dbname: lab08_db
+      host: 146.185.211.176
+      pass: fhjr5-Ytuj&j009
+      port: 5433
+      schema: mart
+      threads: 4
+      type: postgres
+      user: admin
+  target: dev

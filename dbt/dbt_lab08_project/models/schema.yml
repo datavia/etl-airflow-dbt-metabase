@@ -1,0 +1,17 @@
+version: 2
+
+sources:
+  - name: stg
+    schema: stg  # Укажите схему, если ваша таблица не в схеме default
+    tables:
+      - name: stg_browser_events
+      - name: stg_location_events
+      - name: stg_geo_events
+      - name: stg_device_events
+  - name: ods
+    schema: mart_ods  # Укажите схему, если ваша таблица не в схеме default
+    tables:
+      - name: ods_browser_events_dbt
+#      - name: ods_location_events
+#      - name: ods_geo_events
+#      - name: ods_device_events
