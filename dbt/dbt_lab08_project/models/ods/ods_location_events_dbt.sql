@@ -1,6 +1,9 @@
 {{ config(materialized='incremental', schema='ods') }}
 
-select left(source_name, length(source_name)-26) source_name, -- минус длина строки /location_events.jsonl.zip
+with sources as (select distinct source_name
+				   from mart_ods.ods_location_events_dbt)
+select e.source_name,
+       left(e.source_name, length(e.source_name)-26) source_pref, -- минус длина строки /location_events.jsonl.zip
        (json_data->>'event_id')::uuid event_id,
         json_data->>'page_url' page_url,
 		json_data->>'page_url_path' page_url_path,
@@ -10,9 +13,7 @@ select left(source_name, length(source_name)-26) source_name, -- минус дл
 		json_data->>'utm_source' utm_source,
 		json_data->>'utm_content' utm_content,
 		json_data->>'utm_campaign' utm_campaign
-  from {{ source ('stg', 'stg_location_events') }}
-
-{% if is_incremental() %}
-WHERE source_name not in (select source_name
- FROM {{ this }})
-{% endif %}
+  from {{ source ('stg', 'stg_location_events') }} e
+  left join sources s 
+    on s.source_name = e.source_name
+  WHERE s.source_name is null 
