@@ -2,10 +2,9 @@ from airflow import DAG
 import pendulum
 from airflow.operators.python import PythonOperator
 from airflow.operators.dummy_operator import DummyOperator
-from datetime import datetime, timedelta
-from scripts import load_stg
 from functools import partial
-# , build_ods, build_dds
+from datetime import datetime, timedelta
+from scripts import load_stg_history, finalize_stg_history
 
 default_args = {
     'owner': 'airflow',
@@ -20,14 +19,14 @@ default_args = {
 local_tz = pendulum.timezone("Europe/Moscow")
 
 with DAG(
-    'hourly_etl_pipeline',
+    'history_etl_pipeline',
     default_args=default_args,
-    description='Часовая загрузка S3 -> stg -> ods -> dds',
-    schedule_interval='@hourly',
+    description='Историческая загрузка S3 -> stg -> ods -> dds',
+    schedule_interval=None,
     max_active_runs=1,
     start_date=datetime(2025, 4, 4, tzinfo=local_tz),
     catchup=False,
-    tags=['auto', 'etl']
+    tags=['manual', 'etl']
 ) as dag:
 
     event_types = ['browser_events', 'device_events', 'geo_events', 'location_events']
@@ -37,23 +36,20 @@ with DAG(
     for event in event_types:
         task = PythonOperator(
             task_id=f'load_stg_{event}',
-            python_callable=partial(load_stg.run, event_type=event),
+            python_callable=partial(load_stg_history.run_with_variables, event_type=event),
         )
         stg_tasks.append(task)
+    
+    finalize_tasks = []
 
-    # ods_task = PythonOperator(
-    #     task_id='build_ods',
-    #     python_callable=build_ods.run,
-    #     op_kwargs={"execution_date":"{{ execution_date.isoformat() }}"}
-    # )
-
-    # dds_task = PythonOperator(
-    #     task_id='build_dds',
-    #     python_callable=build_dds.run,
-    #     op_kwargs={"execution_date":"{{ execution_date.isoformat() }}"}
-    # )
+    for event in event_types:
+        task = PythonOperator(
+            task_id=f'finalize_{event}',
+            python_callable=partial(finalize_stg_history.finalize_tables, event_type=event),
+        )
+        finalize_tasks.append(task)
 
     start = DummyOperator(task_id="start",dag=dag)
     end = DummyOperator(task_id="end",dag=dag)
 
-    start >> stg_tasks >> end
+    start >> stg_tasks >> [finalize_tasks] >> end 
