@@ -28,7 +28,7 @@ def run(start_date: str, end_date: str, event_type: str):
     if start_date > end_date:
         raise ValueError("start_date must be before end_date")
 
-    total_hours = int((end_date - start_date).total_econds() // 3600)
+    total_hours = int((end_date - start_date).total_seconds() // 3600)
     print(f"Processing {total_hours} hours...")
 
     bucket_name = 'npl-de16-lab8-data'
