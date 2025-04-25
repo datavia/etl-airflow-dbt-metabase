@@ -18,4 +18,5 @@ models:
   dbt_lab08_project:
     ods:
       +materialized: incremental
-      +schema: ods
+    dm:
+      +materialized: incremental

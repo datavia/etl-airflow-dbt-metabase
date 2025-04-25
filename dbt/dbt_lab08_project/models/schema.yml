@@ -19,7 +19,7 @@ sources:
           - name: source_name
             description: Источник
           - name: json_data
-            description: ДанныеTODO
+            description: Данные TODOJSON
       - name: stg_location_events
         description: Положение пользователя на сайте и информация о том, откуда пользователь попал на страницу
         columns: *stg_columns
@@ -30,10 +30,3 @@ sources:
         description: Устройства, с которых пользователи пользовались сайтом
         columns: *stg_columns
 
-  - name: ods
-    schema: mart_ods
-    tables:
-      - name: ods_browser_events_dbt
-#      - name: ods_location_events
-#      - name: ods_geo_events
-#      - name: ods_device_events
