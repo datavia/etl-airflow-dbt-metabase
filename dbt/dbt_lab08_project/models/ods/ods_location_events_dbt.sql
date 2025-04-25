@@ -1,9 +1,6 @@
 {{ config(materialized='incremental', schema='ods') }}
 
-with sources as (select distinct source_name
-				   from mart_ods.ods_location_events_dbt)
-select e.source_name,
-       left(e.source_name, length(e.source_name)-26) source_pref, -- минус длина строки /location_events.jsonl.zip
+select date_trunc('h', load_dttm) load_hour,
        (json_data->>'event_id')::uuid event_id,
         json_data->>'page_url' page_url,
 		json_data->>'page_url_path' page_url_path,
@@ -13,7 +10,9 @@ select e.source_name,
 		json_data->>'utm_source' utm_source,
 		json_data->>'utm_content' utm_content,
 		json_data->>'utm_campaign' utm_campaign
-  from {{ source ('stg', 'stg_location_events') }} e
-  left join sources s 
-    on s.source_name = e.source_name
-  WHERE s.source_name is null 
+  from {{ source ('stg', 'stg_location_events') }}
+
+{% if is_incremental() %}
+WHERE date_trunc('h', load_dttm) > (select coalesce(max(load_hour), '1900-01-01')
+ FROM {{ this }})
+{% endif %}
