@@ -1,4 +1,6 @@
-select date_trunc('h', load_dttm) load_hour,
+{{ config( schema='ods') }}
+
+select load_dttm,
        (json_data->>'event_id')::uuid event_id,
        (json_data->>'event_timestamp')::timestamp event_timestamp,
        json_data->>'event_type' event_type,
@@ -9,6 +11,8 @@ select date_trunc('h', load_dttm) load_hour,
   from {{ source ('stg', 'stg_browser_events') }}
 
 {% if is_incremental() %}
-WHERE date_trunc('h', load_dttm) > (select coalesce(max(load_hour), '1900-01-01')
+
+WHERE load_dttm > (select coalesce(max(load_dttm), '1900-01-01')
  FROM {{ this }})
 {% endif %}
+
