@@ -1,4 +1,4 @@
-{{ config(materialized='incremental', schema='ods') }}
+{{ config( schema='ods') }}
 
 select load_dttm,
        (json_data->>'event_id')::uuid event_id,
@@ -11,6 +11,7 @@ select load_dttm,
   from {{ source ('stg', 'stg_browser_events') }}
 
 {% if is_incremental() %}
+
 WHERE load_dttm > (select coalesce(max(load_dttm), '1900-01-01')
  FROM {{ this }})
 {% endif %}

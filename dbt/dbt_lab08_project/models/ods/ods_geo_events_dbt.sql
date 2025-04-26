@@ -1,4 +1,5 @@
-{{ config(materialized='incremental', schema='ods') }}
+
+{{ config( schema='ods') }}
 
 select load_dttm,
        (json_data->>'click_id')::uuid click_id,
