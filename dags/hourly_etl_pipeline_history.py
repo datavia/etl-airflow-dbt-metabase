@@ -1,9 +1,8 @@
 from airflow import DAG
-import pendulum
 from airflow.operators.python import PythonOperator
 from airflow.operators.dummy_operator import DummyOperator
 from functools import partial
-from datetime import datetime, timedelta
+from datetime import datetime
 from scripts import load_stg_history
 # , finalize_stg_history
 

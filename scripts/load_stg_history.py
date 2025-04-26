@@ -55,11 +55,11 @@ def run(start_date: str, end_date: str, event_type: str):
                     with zipped_file.open(name) as file:
                         for line in file:
                             row = json.loads(line.decode('utf-8'))
-                            rows.append((load_id, s3_key, json.dumps(row)))
+                            rows.append((load_id, target_time, s3_key, json.dumps(row)))
             
             if rows:
                 cursor.executemany(
-                    f"INSERT INTO stg.stg_{event_type} (load_id, source_name, json_data) VALUES (%s, %s, %s)",
+                    f"INSERT INTO stg.stg_{event_type} (load_id, load_dttm, source_name, json_data) VALUES (%s, %s, %s, %s)",
                     rows
                 )
                 conn_pg.commit()
