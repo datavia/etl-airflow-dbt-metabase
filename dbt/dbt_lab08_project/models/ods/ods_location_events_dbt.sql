@@ -1,7 +1,7 @@
 
 {{ config(schema='ods') }}
 
-select load_dttm,
+select load_dttm load_hour,
        (json_data->>'event_id')::uuid event_id,
         json_data->>'page_url' page_url,
         json_data->>'page_url_path' page_url_path,
@@ -14,7 +14,8 @@ select load_dttm,
   from {{ source ('stg', 'stg_location_events') }}
 
 {% if is_incremental() %}
-WHERE load_dttm > (select coalesce(max(load_dttm), '1900-01-01')
+WHERE load_dttm > (select coalesce(max(load_hour), '1900-01-01')
  FROM {{ this }})
 {% endif %}
+
 
