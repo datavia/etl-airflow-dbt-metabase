@@ -43,7 +43,7 @@ with DAG(
 
     run_dbt_task = BashOperator(
         task_id='run_dbt_models',
-        bash_command='echo $PATH && dbt run --profiles-dir /dbt --project-dir dbt/dbt_lab08_project/models',
+        bash_command='echo $PATH && dbt run --profiles-dir /dbt --project-dir /dbt/dbt_lab08_project',
         env={
             'DBT_PROFILES_DIR': '/dbt',
             'DBT_USER': os.environ.get('POSTGRES_LAB8_USER'),
