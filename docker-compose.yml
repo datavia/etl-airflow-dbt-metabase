@@ -95,6 +95,7 @@ services:
     env_file:
       - ./.env
     entrypoint: ["/bin/sh", "-c", "sleep infinity"]
+    
 volumes:
   postgres_data:
   dags:
