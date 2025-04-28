@@ -1,0 +1,22 @@
+name: 'dbt_lab08_project'
+version: '1.0.0'
+
+profile: 'dbt_lab08_project'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  dbt_lab08_project:
+    ods:
+      +materialized: incremental
+    dm:
+      +materialized: incremental
