@@ -3,10 +3,10 @@ dbt_lab08_project:
   outputs:
     prod:
       type: postgres
-      host: ${POSTGRES_LAB8_HOST}
-      user: ${POSTGRES_LAB8_USER}
-      password: ${POSTGRES_LAB8_PASSWORD}
-      dbname: ${POSTGRES_LAB8_DB}
-      schema: ods
+      host: "{{ env_var('DBT_HOST') }}"
+      user: "{{ env_var('DBT_USER') }}"
+      password: "{{ env_var('DBT_PASSWORD') }}"
+      dbname: "{{ env_var('DBT_DATABASE') }}"
+      schema: "{{ env_var('DBT_SCHEMA') }}"
       threads: 4
       port: 5433

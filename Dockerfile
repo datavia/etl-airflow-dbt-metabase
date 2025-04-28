@@ -13,8 +13,6 @@ ENV PATH=/root/.local/bin:$PATH
 
 # меняем тип эксзекутора для Airflow на LocalExecutor (запускает задачи параллельно, но только на одной машине)
 ENV AIRFLOW__CORE__EXECUTOR=LocalExecutor
-# указываем подключение к постгре
-ENV AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/airflow
 # отключаем загрузку примеров дагов
 ENV AIRFLOW__CORE__LOAD_EXAMPLES=False
 # отключаем загрузку соединений по умолчанию
@@ -24,3 +22,4 @@ ENV AIRFLOW__CORE__LOAD_DEFAULT_CONNECTIONS=False
 ENV AIRFLOW__CORE__EXPOSE_HOSTNAME=True
 # отображать трассировку стека при возникновении ошибки
 ENV AIRFLOW__CORE__EXPOSE_STACKTRACE=True
+ENV AIRFLOW__CORE__DEFAULT_TIMEZONE='UTC+1'

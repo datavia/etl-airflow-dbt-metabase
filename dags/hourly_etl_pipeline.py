@@ -1,3 +1,4 @@
+import os
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.dummy_operator import DummyOperator
@@ -42,7 +43,15 @@ with DAG(
 
     run_dbt_task = BashOperator(
         task_id='run_dbt_models',
-        bash_command='docker exec dbt dbt run --profiles-dir /dbt --project-dir /bdl_lab08_project',
+        bash_command='dbt run --profiles-dir /dbt --project-dir /bdl_lab08_project',
+        env={
+            'DBT_PROFILES_DIR': '/dbt',
+            'DBT_USER': os.environ.get('POSTGRES_LAB8_USER'),
+            'DBT_PASSWORD': os.environ.get('POSTGRES_LAB8_PASSWORD'),
+            'DBT_HOST': os.environ.get('POSTGRES_LAB8_HOST'),
+            'DBT_DATABASE': os.environ.get('POSTGRES_LAB8_DB'),
+            'DBT_SCHEMA': 'ods'
+        }
     )
 
     start = DummyOperator(task_id="start",dag=dag)

@@ -1,4 +1,6 @@
 apache-airflow[postgres]==2.9.2
 psycopg2-binary==2.9.9
 apache-airflow-providers-amazon
+dbt-postgres
+
 

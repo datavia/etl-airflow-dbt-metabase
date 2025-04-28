@@ -27,6 +27,9 @@ services:
     volumes:
       - dags:/opt/airflow/dags
       - ./airflow_logs:/usr/local/airflow/logs
+      - ./dbt:/dbt
+    env_file:
+      - .env
     ports:
       - "8080:8080"
     entrypoint: airflow webserver
@@ -42,9 +45,12 @@ services:
       - AIRFLOW__CORE__DEFAULT_TIMEZONE='UTC+1'
       - AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/dags/repo/dags
       - PYTHONPATH=/opt/airflow/dags/repo
+    env_file:
+      - .env
     volumes:
       - dags:/opt/airflow/dags
       - ./airflow_logs:/usr/local/airflow/logs
+      - ./dbt:/dbt
     entrypoint: airflow scheduler
 
   airflow-init:
@@ -69,6 +75,9 @@ services:
       - ./entrypoint.sh:/entrypoint.sh
       - dags:/opt/airflow/dags
       - ./airflow_logs:/usr/local/airflow/logs
+      - ./dbt:/dbt
+    env_file:
+      - .env
     entrypoint: /entrypoint.sh
 
   gitsync:
@@ -84,17 +93,6 @@ services:
       - GIT_SYNC_PASSWORD=${GIT_PASSWORD}
     volumes:
       - dags:/git 
-
-  dbt:
-    image: ghcr.io/dbt-labs/dbt-postgres:1.7.4
-    container_name: dbt
-    environment:
-      DBT_PROFILES_DIR: /dbt
-    volumes:
-      - ./dbt:/dbt
-    env_file:
-      - ./.env
-    entrypoint: ["/bin/sh", "-c", "sleep infinity"]
     
 volumes:
   postgres_data:
