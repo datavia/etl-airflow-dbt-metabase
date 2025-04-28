@@ -87,28 +87,29 @@ git push --set-upstream origin feature/my-cool-change
 
 ```mermaid
 flowchart TD
-    subgraph Docker Compose Host
-        Airflow[Airflow (Docker Container)]
-        Gitsync[Gitsync (Sync DAGs from Git)]
-        DockerHub[(Docker Hub Image)]
+    subgraph "Docker Compose Host"
+        Airflow["Airflow (Docker Container)"]
+        Gitsync["Gitsync (Sync DAGs from Git)"]
+        DockerHub["(Docker Hub Image)"]
     end
 
-    subgraph GitHub
-        GitRepo[Git Repository (DAGs)]
+    subgraph "GitHub"
+        GitRepo["Git Repository (DAGs)"]
     end
 
-    subgraph External Services
-        S3[Yandex Cloud S3 (External Storage)]
-        PostgreSQL[(Remote PostgreSQL Database)]
-        Metabase[Metabase (Dashboards)]
+    subgraph "External Services"
+        S3["Yandex Cloud S3 (External Storage)"]
+        PostgreSQL["(Remote PostgreSQL Database)"]
+        Metabase["Metabase (Dashboards)"]
     end
 
     GitRepo --> Gitsync
     Gitsync --> Airflow
     DockerHub --> Airflow
+    S3 --> |Load Data| PostgreSQL
     Airflow -->|Run DAG Task: Load Data| S3
-    Airflow -->|Run DAG Task: Load to DB| PostgreSQL
-    Airflow -->|Run DAG Task: DBT Models| PostgreSQL
+    Airflow -->|Insert Data| PostgreSQL
+    Airflow -->|Run DBT Models| PostgreSQL
     PostgreSQL --> Metabase
 ```
 
