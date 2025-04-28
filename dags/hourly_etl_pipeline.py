@@ -16,7 +16,7 @@ default_args = {
     'retries': 0,
 }
 
-local_tz = pendulum.timezone("Europe/Paris")
+local_tz = pendulum.timezone("Europe/London")
 
 with DAG(
     'hourly_etl_pipeline',
