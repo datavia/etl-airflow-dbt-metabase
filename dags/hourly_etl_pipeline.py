@@ -58,7 +58,21 @@ with DAG(
         }
     )
 
+    generate_dbt_doc = BashOperator(
+        task_id='run_dbt_docs',
+        bash_command='dbt docs generate --profiles-dir /dbt --project-dir /dbt',
+        env={
+            'DBT_PROFILES_DIR': '/dbt',
+            'DBT_USER': os.environ.get('POSTGRES_LAB8_USER'),
+            'DBT_PASSWORD': os.environ.get('POSTGRES_LAB8_PASSWORD'),
+            'DBT_HOST': os.environ.get('POSTGRES_LAB8_HOST'),
+            'DBT_DATABASE': os.environ.get('POSTGRES_LAB8_DB'),
+            'DBT_SCHEMA': 'ods',
+            'PATH': '/root/.local/bin:' + os.environ.get('PATH', '').lstrip('/root/.local/bin:')
+        }
+    )
+
     start = DummyOperator(task_id="start",dag=dag)
     end = DummyOperator(task_id="end",dag=dag)
 
-    start >> load_data_tasks >> run_dbt_task >> end
+    start >> load_data_tasks >> run_dbt_task >> generate_dbt_doc >> end

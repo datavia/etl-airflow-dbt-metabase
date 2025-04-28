@@ -5,3 +5,4 @@ airflow_logs/
 dbt/target/
 dbt/logs/
 dbt/.user.yml
+metabase/
