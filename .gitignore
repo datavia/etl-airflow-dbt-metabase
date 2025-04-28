@@ -2,6 +2,6 @@
 dags/__pycache__/
 scripts/__pycache__/
 airflow_logs/
-**/dbt_lab08_project/target/
-**/dbt_lab08_project/logs/
+dbt/target/
+dbt/logs/
 dbt/.user.yml
