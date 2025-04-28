@@ -93,13 +93,22 @@ services:
 
   dbt-docs:
     image: arinaexpy/dbt_lab08:latest
-    command: dbt docs serve --host 0.0.0.0 --port 8088
+    command: |
+      dbt docs serve --host 0.0.0.0 --port 8088
     ports:
       - "8088:8088"
     volumes:
-      - ./dbt:/usr/app/dbt
+      - ./dbt:/usr/local/airflow
+      - ~/.dbt:/root/.dbt
+    environment:
+      - DBT_USER=${POSTGRES_LAB8_USER}
+      - DBT_PASSWORD=${POSTGRES_LAB8_PASSWORD}
+      - DBT_HOST=${POSTGRES_LAB8_HOST}
+      - DBT_DATABASE=${POSTGRES_LAB8_DB}
+      - DBT_SCHEMA='ods'
     depends_on:
       - airflow-scheduler
+    restart: always
     
 volumes:
   postgres_data:
