@@ -87,12 +87,12 @@ git push --set-upstream origin feature/my-cool-change
 
 ```mermaid
 flowchart TD
-    DockerHub[(Docker Hub Image Repository)] -->|Pull images| DockerCompose
-    GitHub["GitHub Repository"] -->|Sync DAGs| GitSync
+    DockerHub[(🛳️Docker Hub Image Repository)] -->|Pull images| DockerCompose
+    GitHub["📂GitHub Repository"] -->|Sync DAGs| GitSync
 
     subgraph DockerCompose["Docker Compose"]
-        Webserver[Airflow Webserver]
-        Scheduler[Airflow Scheduler]
+        Webserver[🖥️Airflow Webserver]
+        Scheduler[⏰Airflow Scheduler]
         GitSync["GitSync "]
     end
 
@@ -101,17 +101,17 @@ flowchart TD
 
     Scheduler --> DAG
 
-    subgraph DAG["Airflow DAG (@hourly)"]
+    subgraph DAG["⚙️Airflow DAG (@hourly)"]
         direction LR
-        DAGStart([Start DAG]) --> Task1_LoadS3["Task 1: Load Raw Data from Yandex S3 (STG)"] --> Task2_DBT["Task 2: Run DBT models (ODS, Marts)"] --> DAGEnd([End DAG])
+        DAGStart([▶️Start DAG]) --> Task1_LoadS3["⬇️Task 1: Load Raw Data from Yandex S3 (STG)"] --> Task2_DBT["⚡Task 2: Run DBT models (ODS, Marts)"] --> DAGEnd([⏹️End DAG])
     end
 
-    YandexS3[(Yandex Cloud S3 Storage)] -->|Provide raw data| Task1_LoadS3
+    YandexS3[(☁️Yandex Cloud S3 Storage)] -->|Provide raw data| Task1_LoadS3
 
-    Task2_DBT --> PostgreSQL[(PostgreSQL Database)]
+    Task2_DBT --> PostgreSQL[(🗄️PostgreSQL Database)]
 
     Webserver -->|Trigger/View DAGs| Scheduler
-    PostgreSQL -->|Read marts data| Metabase["Metabase (Dashboards)"]
+    PostgreSQL -->|Read marts data| Metabase["📊Metabase (Dashboards)"]
 ```
 
 # Схема Базы данных 
