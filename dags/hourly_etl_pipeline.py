@@ -42,7 +42,7 @@ with DAG(
 
     run_dbt_task = BashOperator(
         task_id='run_dbt_models',
-        bash_command='source /app/.env && dbt run --profiles-dir /dbt --project-dir /bdl_lab08_project',
+        bash_command='dbt run --profiles-dir /dbt --project-dir /bdl_lab08_project',
     )
 
     start = DummyOperator(task_id="start",dag=dag)

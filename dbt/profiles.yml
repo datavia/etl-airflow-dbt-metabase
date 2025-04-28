@@ -5,8 +5,8 @@ dbt_lab08_project:
       type: postgres
       host: ${POSTGRES_LAB8_HOST}
       user: ${POSTGRES_LAB8_USER}
-      password: ${fhjr5-Ytuj&j009}
-      dbname: ${lab08_db}
+      password: ${POSTGRES_LAB8_PASSWORD}
+      dbname: ${POSTGRES_LAB8_DB}
       schema: ods
       threads: 4
       port: 5433
