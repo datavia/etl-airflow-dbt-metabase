@@ -92,8 +92,7 @@ services:
       DBT_PROFILES_DIR: /dbt
     volumes:
       - ./dbt:/dbt
-    env_file:
-      - .env
+      - /project_lab08/.env:/app/.env
     entrypoint: ["/bin/sh", "-c", "sleep infinity"]
 volumes:
   postgres_data:
