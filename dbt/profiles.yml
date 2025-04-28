@@ -1,0 +1,12 @@
+dbt_lab08_project:
+  target: prod
+  outputs:
+    prod:
+      type: postgres
+      host: ${POSTGRES_LAB8_HOST}
+      user: ${POSTGRES_LAB8_USER}
+      password: ${fhjr5-Ytuj&j009}
+      dbname: ${lab08_db}
+      schema: ods
+      threads: 4
+      port: 5433
