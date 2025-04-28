@@ -1,9 +1,9 @@
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators.bash import BashOperator
 from datetime import datetime
 from scripts import load_stg
-# , build_ods, build_dds
 
 default_args = {
     'owner': 'airflow',
@@ -17,7 +17,7 @@ default_args = {
 with DAG(
     'hourly_etl_pipeline',
     default_args=default_args,
-    description='Часовая загрузка S3 -> stg -> ods -> dds',
+    description='Часовая загрузка и обработка -> stg -> ods -> dm',
     schedule_interval='@hourly',
     max_active_runs=1,
     start_date=datetime(2025, 4, 4),
@@ -27,7 +27,7 @@ with DAG(
 
     event_types = ['browser_events', 'device_events', 'geo_events', 'location_events']
 
-    stg_tasks = []
+    load_data_tasks = []
 
     for event in event_types:
         task = PythonOperator(
@@ -38,21 +38,16 @@ with DAG(
                 'execution_date':"{{ execution_date.isoformat() }}",
             }
         )
-        stg_tasks.append(task)
+        load_data_tasks.append(task)
 
-    # ods_task = PythonOperator(
-    #     task_id='build_ods',
-    #     python_callable=build_ods.run,
-    #     op_kwargs={"execution_date":"{{ execution_date.isoformat() }}"}
-    # )
+    run_dbt_task = BashOperator(
+        task_id='run_dbt_models',
+        bash_command='docker exec dbt dbt run --profiles-dir /dbt --project-dir /bdl_lab08_project',
+    )
 
-    # dds_task = PythonOperator(
-    #     task_id='build_dds',
-    #     python_callable=build_dds.run,
-    #     op_kwargs={"execution_date":"{{ execution_date.isoformat() }}"}
-    # )
+    
 
     start = DummyOperator(task_id="start",dag=dag)
     end = DummyOperator(task_id="end",dag=dag)
 
-    start >> stg_tasks >> end
+    start >> load_data_tasks >> run_dbt_task >> end

@@ -21,6 +21,7 @@ services:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres/${POSTGRES_DB}
       - AIRFLOW__WEBSERVER__SECRET_KEY=mysecret
+      - AIRFLOW__CORE__DEFAULT_TIMEZONE='UTC+1'
       - AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/dags/repo/dags
       - PYTHONPATH=/opt/airflow/dags/repo
     volumes:
@@ -38,6 +39,7 @@ services:
     environment:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres/${POSTGRES_DB}
+      - AIRFLOW__CORE__DEFAULT_TIMEZONE='UTC+1'
       - AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/dags/repo/dags
       - PYTHONPATH=/opt/airflow/dags/repo
     volumes:
@@ -52,6 +54,7 @@ services:
     environment:
       - AIRFLOW__CORE__EXECUTOR=LocalExecutor
       - AIRFLOW__DATABASE__SQL_ALCHEMY_CONN=postgresql+psycopg2://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres/${POSTGRES_DB}
+      - AIRFLOW__CORE__DEFAULT_TIMEZONE='UTC+1'
       - AIRFLOW__CORE__DAGS_FOLDER=/opt/airflow/dags/repo/dags
       - PYTHONPATH=/opt/airflow/dags/repo
       - POSTGRES_LAB8_USER=${POSTGRES_LAB8_USER}
@@ -82,6 +85,14 @@ services:
     volumes:
       - dags:/git 
 
+  dbt:
+    image: ghcr.io/dbt-labs/dbt-postgres:1.7.4
+    container_name: dbt
+    environment:
+      DBT_PROFILES_DIR: /dbt
+    volumes:
+      - ./dbt:/dbt
+    entrypoint: ["/bin/sh", "-c", "sleep infinity"]
 volumes:
   postgres_data:
   dags:
