@@ -42,10 +42,8 @@ with DAG(
 
     run_dbt_task = BashOperator(
         task_id='run_dbt_models',
-        bash_command='docker exec dbt dbt run --profiles-dir /dbt --project-dir /bdl_lab08_project',
+        bash_command='source .env && docker exec dbt dbt run --profiles-dir /dbt --project-dir /bdl_lab08_project',
     )
-
-    
 
     start = DummyOperator(task_id="start",dag=dag)
     end = DummyOperator(task_id="end",dag=dag)
