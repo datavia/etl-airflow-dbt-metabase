@@ -50,7 +50,8 @@ with DAG(
             'DBT_PASSWORD': os.environ.get('POSTGRES_LAB8_PASSWORD'),
             'DBT_HOST': os.environ.get('POSTGRES_LAB8_HOST'),
             'DBT_DATABASE': os.environ.get('POSTGRES_LAB8_DB'),
-            'DBT_SCHEMA': 'ods'
+            'DBT_SCHEMA': 'ods',
+            'PATH': '/root/.local/bin' + os.environ.get('PATH', '')
         }
     )
 
