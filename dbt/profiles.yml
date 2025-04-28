@@ -2,11 +2,11 @@ dbt_lab08_project:
   target: prod
   outputs:
     prod:
-      type: postgres
-      host: "{{ env_var('DBT_HOST') }}"
-      user: "{{ env_var('DBT_USER') }}"
-      password: "{{ env_var('DBT_PASSWORD') }}"
-      dbname: "{{ env_var('DBT_DATABASE') }}"
-      schema: "{{ env_var('DBT_SCHEMA') }}"
-      threads: 4
+      dbname: lab08_db
+      host: 146.185.211.176
+      pass: fhjr5-Ytuj&j009
       port: 5433
+      schema: mart2
+      threads: 4
+      type: postgres
+      user: admin

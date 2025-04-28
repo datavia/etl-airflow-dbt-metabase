@@ -90,6 +90,16 @@ services:
       - GIT_SYNC_PASSWORD=${GIT_PASSWORD}
     volumes:
       - dags:/git 
+
+  dbt-docs:
+    image: arinaexpy/dbt_lab08:latest
+    command: dbt docs serve --host 0.0.0.0 --port 8088
+    ports:
+      - "8088:8088"
+    volumes:
+      - ./dbt:/usr/app/dbt
+    depends_on:
+      - airflow-scheduler
     
 volumes:
   postgres_data:
