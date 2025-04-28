@@ -17,6 +17,14 @@ clean-targets:
 models:
   dbt_lab08_project:
     ods:
+      +tags: ods
+      +schema: ods_dev
       +materialized: incremental
+      meta:
+        owner: "Юлия"
     dm:
+      +tags: dm
+      +schema: dm_dev
       +materialized: incremental
+      meta:
+        owner: "Александр"

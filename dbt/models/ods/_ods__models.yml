@@ -1,0 +1,120 @@
+version: 2
+
+common_columns: &common_columns
+  - name: load_hour
+    description: Время загрузки записи
+    type: timestamp
+
+models:
+  - name: ods_browser_events
+    description: Информация о просмотрах браузера
+    columns:
+      - name: event_id
+        description: Уникальный идентификатор события (например, 8cca1c7d-b0cc-4738-be92-c644101e3fff)
+        type: uuid
+      - name: event_timestamp
+        description: Время события (например, 2022-11-28 20:51:05.627882)
+        type: timestamp
+      - name: event_type
+        description: Тип события (например, pageview)
+        type: text
+      - name: click_id
+        description: Идентификатор клика (например, 811320f1-3bc2-42b9-a841-5a1e5a812f2d)
+        type: uuid
+      - name: browser_name
+        description: Название браузера (например, Chrome)
+        type: text
+      - name: browser_user_agent
+        description: User-agent браузера (например, Mozilla/5.0 (Linux; Android 2.3.5)...)
+        type: text
+      - name: browser_language
+        description: Язык браузера (например, sat_IN)
+        type: text
+      - <<: *common_columns
+
+  - name: ods_device_events
+    description: Данные об устройствах, с которых пользователи пользовались сайтом
+    columns:
+      - name: click_id
+        description: Идентификатор клика (например, 811320f1-3bc2-42b9-a841-5a1e5a812f2d)
+        type: uuid
+      - name: os
+        description: Операционная система устройства (например, iPad; CPU iPad OS 4_2_1 like Mac OS X)
+        type: text
+      - name: os_name
+        description: Название операционной системы (например, iOS)
+        type: text
+      - name: os_timezone
+        description: Часовой пояс операционной системы (например, Europe/Berlin)
+        type: text
+      - name: device_type
+        description: Тип устройства (например, Mobile)
+        type: text
+      - name: device_is_mobile
+        description: Флаг, указывающий, является ли устройство мобильным (например, true)
+        type: boolean
+      - name: user_custom_id
+        description: Пользовательский идентификатор (например, hessjuan@gmail.com)
+        type: text
+      - name: user_domain_id
+        description: Идентификатор домена пользователя (например, e7a09617-3635-44b5-b119-8c1034865a9f)
+        type: uuid
+      - <<: *common_columns
+
+  - name: ods_geo_events
+    description: Данные о локации пользователя
+    columns:
+      - name: click_id
+        description: Идентификатор клика (например, 811320f1-3bc2-42b9-a841-5a1e5a812f2d)
+        type: uuid
+      - name: geo_latitude
+        description: Широта местоположения (например, 50.82709)
+        type: float
+      - name: geo_longitude
+        description: Долгота местоположения (например, -6.9747)
+        type: float
+      - name: geo_country
+        description: Код страны (например, DE)
+        type: text
+      - name: geo_timezone
+        description: Часовой пояс местоположения (например, Europe/Berlin)
+        type: text
+      - name: geo_region_name
+        description: Название региона (например, Wesseling)
+        type: text
+      - name: ip_address
+        description: IP-адрес пользователя (например, 206.227.30.186)
+        type: text
+      - <<: *common_columns
+
+  - name: ods_location_events
+    description: Данные о положении пользователя на сайте и информации о том, откуда пользователь попал на страницу
+    columns:
+      - name: event_id
+        description: Уникальный идентификатор события (например, 8cca1c7d-b0cc-4738-be92-c644101e3fff)
+        type: uuid
+      - name: page_url
+        description: URL страницы (например, http://www.dummywebsite.com/home)
+        type: text
+      - name: page_url_path
+        description: Путь URL страницы (например, /home)
+        type: text
+      - name: referer_url
+        description: URL реферера (например, www.facebook.com)
+        type: text
+      - name: referer_medium
+        description: Тип реферера (например, Internal)
+        type: text
+      - name: utm_medium
+        description: UTM-метка medium (например, Organic)
+        type: text
+      - name: utm_source
+        description: UTM-метка source (например, facebook)
+        type: text
+      - name: utm_content
+        description: UTM-метка content (например, ad_4)
+        type: text
+      - name: utm_campaign
+        description: UTM-метка campaign (например, campaign_2)
+        type: text
+      - <<: *common_columns
