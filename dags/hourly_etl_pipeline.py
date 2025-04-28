@@ -4,6 +4,7 @@ from airflow.operators.python import PythonOperator
 from airflow.operators.dummy_operator import DummyOperator
 from airflow.operators.bash import BashOperator
 from datetime import datetime
+from pendulum import timezone
 from scripts import load_stg
 
 default_args = {
@@ -15,6 +16,8 @@ default_args = {
     'retries': 0,
 }
 
+dag_timezone = timezone('UTC+1')
+
 with DAG(
     'hourly_etl_pipeline',
     default_args=default_args,
@@ -22,6 +25,7 @@ with DAG(
     schedule_interval='@hourly',
     max_active_runs=1,
     start_date=datetime(2025, 4, 4),
+    timezone=dag_timezone,
     catchup=False,
     tags=['auto', 'etl']
 ) as dag:
