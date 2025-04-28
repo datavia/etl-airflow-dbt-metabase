@@ -90,10 +90,10 @@ flowchart TD
     DockerHub[(🛳️Docker Hub Image Repository)] -->|Pull images| DockerCompose
     GitHub["📂GitHub Repository"] -->|Sync DAGs| GitSync
 
-    subgraph DockerCompose["Docker Compose"]
+    subgraph DockerCompose["🛠️Docker Compose"]
         Webserver[🖥️Airflow Webserver]
         Scheduler[⏰Airflow Scheduler]
-        GitSync["GitSync "]
+        GitSync["🔄GitSync "]
     end
 
     GitSync --> Webserver
