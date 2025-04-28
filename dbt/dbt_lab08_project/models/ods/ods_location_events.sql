@@ -1,6 +1,3 @@
-
-{{ config(schema='ods') }}
-
 select load_dttm load_hour,
        (json_data->>'event_id')::uuid event_id,
         json_data->>'page_url' page_url,

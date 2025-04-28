@@ -19,7 +19,7 @@ sources:
           - name: source_name
             description: Источник
           - name: json_data
-            description: Данные TODOJSON
+            description: Данные в формате JSON
       - name: stg_location_events
         description: Положение пользователя на сайте и информация о том, откуда пользователь попал на страницу
         columns: *stg_columns

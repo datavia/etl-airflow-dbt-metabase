@@ -1,6 +1,3 @@
-
-{{ config( schema='ods') }}
-
 select  load_dttm load_hour,
        (json_data->>'click_id')::uuid click_id,
         json_data->>'os' os,
