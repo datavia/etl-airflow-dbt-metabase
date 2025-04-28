@@ -118,26 +118,5 @@ flowchart TD
     PostgreSQL -->|Read marts data| Metabase["📊Metabase (Dashboards)"]
 ```
 
-# Схема Базы данных 
-
-```mermaid
-flowchart TD
-    subgraph STG [Stage Layer]
-        stg_browser_events[stg.stg_browser_events]
-        stg_geo_events[stg.stg_geo_events]
-        stg_device_events[stg.stg_device_events]
-        stg_location_events[stg.stg_location_events]
-    end
-
-    subgraph ODS [ODS Layer]
-        ods_browser_events[ods.ods_browser_events]
-        ods_geo_events[ods.ods_geo_events]
-        ods_device_events[ods.ods_device_events]
-        ods_location_events[ods.ods_location_events]
-    end
-
-    stg_browser_events --> ods_browser_events
-    stg_geo_events --> ods_geo_events
-    stg_device_events --> ods_device_events
-    stg_location_events --> ods_location_events
-```
+# Документация Базы Данных 
+http://217.16.20.100:8088/
