@@ -86,21 +86,30 @@ git push --set-upstream origin feature/my-cool-change
 # Схема Инфраструктуры
 
 ```mermaid
-graph TD
-    GitHub[GitHub_Repository] -->|Sync DAGs| GitSync
-    GitSync --> Webserver
-    GitSync --> Scheduler
-
-    Scheduler -->|Connects and runs DAGs| PostgreSQL[(Remote PostgreSQL DB)]
-    Webserver -->|Connects and runs DAGs| PostgreSQL
-
-    PostgreSQL --> Metabase[Metabase Dashboards]
-
-    subgraph Docker_Compose
-        Webserver[Airflow Webserver]
-        Scheduler[Airflow Scheduler]
-        GitSync[GitSync]
+flowchart TD
+    subgraph Docker Compose Host
+        Airflow[Airflow (Docker Container)]
+        Gitsync[Gitsync (Sync DAGs from Git)]
+        DockerHub[(Docker Hub Image)]
     end
+
+    subgraph GitHub
+        GitRepo[Git Repository (DAGs)]
+    end
+
+    subgraph External Services
+        S3[Yandex Cloud S3 (External Storage)]
+        PostgreSQL[(Remote PostgreSQL Database)]
+        Metabase[Metabase (Dashboards)]
+    end
+
+    GitRepo --> Gitsync
+    Gitsync --> Airflow
+    DockerHub --> Airflow
+    Airflow -->|Run DAG Task: Load Data| S3
+    Airflow -->|Run DAG Task: Load to DB| PostgreSQL
+    Airflow -->|Run DAG Task: DBT Models| PostgreSQL
+    PostgreSQL --> Metabase
 ```
 
 # Схема Базы данных 
