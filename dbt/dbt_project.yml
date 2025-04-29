@@ -26,6 +26,9 @@ models:
       +tags: dm
       +schema: dm
       +materialized: incremental
+      +indexes:
+        - columns: [event_timestamp]
+          type: btree
       +meta:
         owner: "Александр"
 seeds:
