@@ -116,6 +116,7 @@ flowchart TD
 
     Webserver -->|Trigger/View DAGs| Scheduler
     PostgreSQL -->|Read marts data| Metabase["📊Metabase (Dashboards)"]
+```
 
 # Схема Инфраструктуры LR
 
@@ -153,6 +154,7 @@ flowchart LR
     %% DockerCompose -.->| | DAG
     %% style DockerCompose fill:#f9f9f9,stroke:#333
     style DAG fill:#f9f9f9,stroke:#333
+```
 
 # Документация Базы Данных 
 http://217.16.20.100:8088/
