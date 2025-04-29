@@ -104,12 +104,14 @@ flowchart TD
         Webserver[🖥️Airflow Webserver]
         Scheduler[⏰Airflow Scheduler]
         GitSync["🔄GitSync "]
+        DBTDocs["📄dbt Docs"]
     end
 
     GitSync --> Webserver
     GitSync --> Scheduler
 
-    Scheduler --> DAG
+    Scheduler --> |schedules| DAG
+    Webserver --> |view/trigger| DAG
 
     subgraph DAG["⚙️Airflow DAG (@hourly)"]
         direction LR
@@ -122,38 +124,6 @@ flowchart TD
 
     Webserver -->|Trigger/View DAGs| Scheduler
     PostgreSQL -->|Read marts data| Metabase["📊Metabase (Dashboards)"]
-```
-
-# Схема Инфраструктуры LR
-
-```mermaid
-flowchart LR
-    DockerHub[(🛳️ Docker Hub Image Repository)] -->|Pull images| DockerCompose
-    GitHub["📂 GitHub Repository"] -->|Sync DAGs| GitSync
-
-    subgraph DockerCompose["🛠️ Docker Compose"]
-        Webserver[🖥️ Airflow Webserver]
-        Scheduler[⏰ Airflow Scheduler]
-        GitSync["🔄 GitSync"]
-        DBTDocs
-    end
-
-    GitSync --> Webserver
-    GitSync --> Scheduler
-
-    Scheduler --> |schedules| DAG
-    Webserver --> |view/trigger| DAG
-
-    YandexS3[(☁️ Yandex Cloud S3 Storage)] -->|Provide raw data| Task1_LoadS3
-
-    subgraph DAG["⚙️ Airflow DAG (@hourly)"]
-        direction LR
-        DAGStart([▶️ Start DAG]) --> Task1_LoadS3["⬇️ Task 1: Load Raw Data from Yandex S3 (STG)"] --> Task2_DBT["⚡ Task 2: Run DBT models (ODS, Marts)"] --> DAGEnd([⏹️ End DAG])
-    end
-
-    Task2_DBT --> PostgreSQL[(🗄️ PostgreSQL Database)]
-
-    PostgreSQL -->|Read marts data| Metabase["📊 Metabase (Dashboards)"]
 
     style DAG fill:#f9f9f9,stroke:#333
 ```
