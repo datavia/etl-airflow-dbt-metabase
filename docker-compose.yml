@@ -13,7 +13,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   airflow-webserver:
-    image: arinaexpy/project_lab08:latest
+    image: arinaexpy/project_lab08:v1.0.0
     restart: always
     depends_on:
       - postgres
@@ -34,7 +34,7 @@ services:
     entrypoint: airflow webserver
 
   airflow-scheduler:
-    image: arinaexpy/project_lab08:latest
+    image: arinaexpy/project_lab08:v1.0.0
     restart: always
     depends_on:
       - postgres
@@ -52,7 +52,7 @@ services:
     entrypoint: airflow scheduler
 
   airflow-init:
-    image: arinaexpy/project_lab08:latest
+    image: arinaexpy/project_lab08:v1.0.0
     depends_on:
       - postgres
     environment:
