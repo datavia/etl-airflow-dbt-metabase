@@ -18,13 +18,22 @@ models:
   dbt_lab08_project:
     ods:
       +tags: ods
-      +schema: ods_dev
+      +schema: ods
       +materialized: incremental
-      meta:
+      +meta:
         owner: "Юлия"
     dm:
       +tags: dm
-      +schema: dm_dev
+      +schema: dm
       +materialized: incremental
-      meta:
+      +indexes:
+        - columns: [event_timestamp]
+          type: btree
+      +meta:
+        owner: "Александр"
+seeds:
+  dbt_lab08_project:
+    dictionaries:
+      +schema: ods
+      +meta:
         owner: "Александр"
