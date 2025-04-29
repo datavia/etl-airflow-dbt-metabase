@@ -120,7 +120,7 @@ flowchart TD
 
 # Схема Инфраструктуры LR
 
-```
+```mermaid
 flowchart LR
     DockerHub[(🛳️ Docker Hub Image Repository)] -->|Pull images| DockerCompose
     GitHub["📂 GitHub Repository"] -->|Sync DAGs| GitSync
@@ -147,12 +147,8 @@ flowchart LR
 
     Task2_DBT --> PostgreSQL[(🗄️ PostgreSQL Database)]
 
-    %% DockerCompose -->|schedules| DAG
     PostgreSQL -->|Read marts data| Metabase["📊 Metabase (Dashboards)"]
 
-    %% Невидимые связи для выравнивания
-    %% DockerCompose -.->| | DAG
-    %% style DockerCompose fill:#f9f9f9,stroke:#333
     style DAG fill:#f9f9f9,stroke:#333
 ```
 
