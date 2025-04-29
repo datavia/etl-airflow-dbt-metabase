@@ -122,7 +122,6 @@ flowchart TD
 
     Task2_DBT --> PostgreSQL[(🗄️PostgreSQL Database)]
 
-    Webserver -->|Trigger/View DAGs| Scheduler
     PostgreSQL -->|Read marts data| Metabase["📊Metabase (Dashboards)"]
 
     style DAG fill:#f9f9f9,stroke:#333
