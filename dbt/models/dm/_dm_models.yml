@@ -1,60 +1,111 @@
+version: 2
+
 models:
   - name: dm_events
     description: Витрина со статистикой событий
     columns:
       - name: load_hour
         description: Время загрузки записи
+        type: TIMESTAMP
+        tests:
+          - not_null
       - name: event_id
         description: ID события
+        type: UUID
+        tests:
+          - not_null
       - name: event_type
         description: Тип события
+        type: TEXT
+        tests:
+          - not_null
       - name: event_timestamp
         description: Дата и время события
-      - name: event_hour
-        description: Час события 
-      - name: event_browser
+        type: TIMESTAMP
+        tests:
+          - not_null
+      - name: browser_name
         description: Браузер события
-      - name: event_platform
-        description: Платформа 
+        type: TEXT
+      - name: device_type
+        description: Платформа
+        type: TEXT
+      - name: event_hour
+        description: Час события
+        type: TIMESTAMP
 
   - name: dm_sales
     description: Витрина со статистикой продаж
     columns:
       - name: load_hour
         description: Время загрузки записи
+        type: TIMESTAMP
+        tests:
+          - not_null
       - name: sale_custom_id
         description: Уникальный идентификатор покупки
+        type: TEXT
+        tests:
+          - not_null
+          - unique
       - name: event_timestamp
         description: Время события
-      - name: e-mail клиента, который совершил покупку
-        description: Электронная почта покупателя
+        type: TIMESTAMP
+        tests:
+          - not_null
       - name: sale_timestamp
         description: Дата и время совершения продажи с точностью до секунды
-      - name: sale_hour
-        description: Час совершения продажи (выделенный из sale_timestamp)
+        type: TIMESTAMP
+        tests:
+          - not_null
       - name: sale_item_cnt
         description: Количество товарных единиц в одной продаже
+        type: INTEGER
       - name: sale_browser
         description: Браузер, который использовал клиент при оформлении покупки
+        type: TEXT
       - name: sale_platform
         description: Платформа/устройство (десктоп, мобильное, iOS, Android и т.д.), с которого была совершена покупка
+        type: TEXT
       - name: sale_page_before
         description: URL страницы, с которой пользователь перешел к оформлению заказа
-      - name: clear_sale_page_before
-        description: Очищенный URL страницы, с которой пользователь перешел к оформлению заказа
+        type: TEXT
       - name: sale_source
         description: Первоначальный источник, приведший пользователя к покупке
+        type: TEXT
       - name: sale_utm_campaign
         description: Идентификатор маркетинговой кампании, связанной с продажей
+        type: TEXT
       - name: sale_referer_url
         description: Референный URL (внешний источник перехода) перед покупкой
+        type: TEXT
       - name: sale_referer_medium
         description: Тип реферального перехода (organic, referral, email и т.д.)
-      - name: sale_utm_source
-        description: Источник UTM метки (например, google, yandex, newsletter)
+        type: TEXT
       - name: sale_utm_content
         description: Идентификатор контента/креатива в UTM метках
+        type: TEXT
       - name: sale_geo_country
         description: Страна расположения покупателя (определенная по IP)
+        type: TEXT
       - name: sale_geo_region_name
-        description: Регион/область расположения покупателя (определенная по IP)   
+        description: Регион/область расположения покупателя (определенная по IP)
+        type: TEXT
+      - name: sale_geo_latitude
+        description: Широта
+        type: FLOAT8
+      - name: sale_geo_longitude
+        description: Долгота
+        type: FLOAT8
+      - name: sale_hour
+        description: Час совершения продажи
+        type: TIMESTAMP
+      - name: clear_sale_page_before
+        description: Очищенный URL страницы, с которой пользователь перешел к оформлению заказа
+        type: TEXT
+      - name: sale_geo_region_name_ru
+        description: Регион/область расположения покупателя на русском (определенная по IP)
+        type: TEXT
+      - name: clear_sale_page_before_ru
+        description: Очищенный URL страницы на русском, с которой пользователь перешел к оформлению заказа
+        type: TEXT
