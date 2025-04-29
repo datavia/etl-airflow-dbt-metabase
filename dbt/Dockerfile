@@ -4,6 +4,6 @@ RUN pip install dbt
 
 WORKDIR /usr/app/dbt
 
-COPY ./dbt /usr/app/dbt
+COPY . /usr/app/dbt
 
 EXPOSE 8088

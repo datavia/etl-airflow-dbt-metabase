@@ -92,9 +92,9 @@ services:
       - dags:/git 
 
   dbt-docs:
-    image: arinaexpy/dbt_lab08:latest
+    image: arinaexpy/dbt_lab08:v1.0.0
     command: |
-      dbt docs serve --host 0.0.0.0 --port 8088
+      dbt docs serve --port 8088 --no-browser
     ports:
       - "8088:8088"
     volumes:
