@@ -110,8 +110,8 @@ flowchart TD
     GitSync --> Webserver
     GitSync --> Scheduler
 
-    Scheduler --> |schedules| DAG
-    Webserver --> |view/trigger| DAG
+    Scheduler -->|schedules| DAG
+    Webserver -->|view/trigger| DAG
 
     subgraph DAG["⚙️Airflow DAG (@hourly)"]
         direction LR
