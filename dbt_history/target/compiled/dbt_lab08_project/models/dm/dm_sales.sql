@@ -58,8 +58,8 @@ cte_lead as (
     where
         ole.page_url_path != '/home'
         
-            and ole.load_hour >= '2025-04-30T08:00:00' and ole.load_hour < '2025-04-30T09:00:00'
-            and obe.load_hour >= '2025-04-30T08:00:00' and obe.load_hour < '2025-04-30T09:00:00'
+            and ole.load_hour >= '2025-04-30T11:00:00' and ole.load_hour < '2025-04-30T12:00:00'
+            and obe.load_hour >= '2025-04-30T11:00:00' and obe.load_hour < '2025-04-30T12:00:00'
         
     window w as (
         partition by user_custom_id
