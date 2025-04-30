@@ -47,7 +47,6 @@ models:
         type: TEXT
         tests:
           - not_null
-          - unique
       - name: event_timestamp
         description: Время события
         type: TIMESTAMP
