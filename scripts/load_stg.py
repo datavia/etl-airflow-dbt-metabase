@@ -50,6 +50,7 @@ def run(execution_date: str, event_type: str):
             print(f"Inserted {len(rows)} rows for {s3_key}")
     except Exception as e:
         print(f"Error while processing {s3_key}: {e}")
+        raise
 
     conn_pg.commit()
     cursor.close()
