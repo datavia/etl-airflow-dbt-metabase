@@ -1,3 +1,6 @@
+{% set start_date = var("start_date") %}
+{% set end_date = var("end_date") %}
+
 with unique_devices as (
     select distinct
         click_id,

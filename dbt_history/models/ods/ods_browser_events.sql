@@ -1,3 +1,6 @@
+{% set start_date = var("start_date") %}
+{% set end_date = var("end_date") %}
+
 select
     load_dttm as load_hour,
     (json_data ->> 'event_id')::uuid as event_id,

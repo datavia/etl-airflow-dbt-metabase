@@ -1,3 +1,6 @@
+
+
+
 select
     load_dttm as load_hour,
     (json_data ->> 'event_id')::uuid as event_id,
@@ -10,7 +13,4 @@ select
 from "lab08_db"."stg"."stg_browser_events"
 
 
-    where load_dttm > (
-        select COALESCE(MAX(load_hour), '1900-01-01')
-        from "lab08_db"."ods"."ods_browser_events"
-    )
+    where load_dttm >= '2025-04-30T08:00:00' and load_dttm < '2025-04-30T09:00:00'

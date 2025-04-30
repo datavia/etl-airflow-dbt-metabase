@@ -1,3 +1,6 @@
+
+
+
 select
     load_dttm as load_hour,
     (json_data ->> 'click_id')::uuid as click_id,
@@ -11,7 +14,4 @@ select
 from "lab08_db"."stg"."stg_device_events"
 
 
-    where load_dttm > (
-        select coalesce(max(load_hour), '1900-01-01')
-        from "lab08_db"."ods"."ods_device_events"
-    )
+    where load_dttm >= '2025-04-30T08:00:00' and load_dttm < '2025-04-30T09:00:00'

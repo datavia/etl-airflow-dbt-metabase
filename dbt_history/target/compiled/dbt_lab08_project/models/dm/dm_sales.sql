@@ -1,3 +1,6 @@
+
+
+
 with unique_devices as (
     select distinct
         click_id,
@@ -55,10 +58,8 @@ cte_lead as (
     where
         ole.page_url_path != '/home'
         
-            and ole.load_hour
-            > (select COALESCE(MAX(load_hour), '1900-01-01') from "lab08_db"."dm"."dm_sales")
-            and obe.load_hour
-            > (select COALESCE(MAX(load_hour), '1900-01-01') from "lab08_db"."dm"."dm_sales")
+            and ole.load_hour >= '2025-04-30T08:00:00' and ole.load_hour < '2025-04-30T09:00:00'
+            and obe.load_hour >= '2025-04-30T08:00:00' and obe.load_hour < '2025-04-30T09:00:00'
         
     window w as (
         partition by user_custom_id

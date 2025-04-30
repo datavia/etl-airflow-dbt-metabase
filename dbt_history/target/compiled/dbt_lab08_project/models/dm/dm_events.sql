@@ -1,3 +1,6 @@
+
+
+
 with distinct_clicks as (
     select distinct
         click_id,
@@ -16,7 +19,4 @@ select
 from "lab08_db"."ods"."ods_browser_events" as e
 inner join distinct_clicks as d on e.click_id = d.click_id
 
-    where load_hour > (
-        select COALESCE(MAX(load_hour), '1900-01-01')
-        from "lab08_db"."dm"."dm_events"
-    )
+    where load_dttm >= '2025-04-30T08:00:00' and load_dttm < '2025-04-30T09:00:00'
