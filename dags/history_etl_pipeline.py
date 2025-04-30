@@ -30,8 +30,7 @@ with DAG(
 
     event_types = Variable.get(
         "lab08_event_types",
-        default_var=None,
-        deserialize_json=True
+        default_var=None
     )
 
     load_data_tasks = []
