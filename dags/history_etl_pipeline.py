@@ -8,6 +8,10 @@ from datetime import datetime
 from airflow.models import Variable
 from scripts import load_stg_history, remove_data
 
+dag_doc_md = """
+            !!! Before triggering set Airflow Variables lab08_start_date and lab08_end_date !!!
+            """
+
 default_args = {
     'owner': 'airflow',
     'depends_on_past': False,
@@ -25,6 +29,7 @@ with DAG(
     max_active_runs=1,
     start_date=datetime(2025, 4, 4),
     catchup=False,
+    doc_md=dag_doc_md,
     tags=['manual', 'etl']
 ) as dag:
 
