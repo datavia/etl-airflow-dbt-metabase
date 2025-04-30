@@ -61,7 +61,7 @@ with DAG(
                             --vars '{{"start_date": "{start_date}", "end_date": "{end_date}"}}'
                     """,
         env={
-            'DBT_PROFILES_DIR': '/dbt',
+            'DBT_PROFILES_DIR': '/dbt_history',
             'DBT_USER': os.environ.get('POSTGRES_LAB8_USER'),
             'DBT_PASSWORD': os.environ.get('POSTGRES_LAB8_PASSWORD'),
             'DBT_HOST': os.environ.get('POSTGRES_LAB8_HOST'),
