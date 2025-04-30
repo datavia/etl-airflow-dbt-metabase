@@ -4,15 +4,14 @@ import io
 import uuid
 from airflow.providers.amazon.aws.hooks.s3 import S3Hook
 from airflow.providers.postgres.hooks.postgres import PostgresHook
-from datetime import datetime
+from datetime import datetime, timedelta
 
 
 def run(execution_date: str, event_type: str):
-    if execution_date:
-        exec_dt = datetime.fromisoformat(execution_date)
-        target_time = exec_dt
-    else:
-        target_time = datetime.utcnow()
+    exec_dt = datetime.fromisoformat(execution_date)
+    # Source data is UTC+1
+    target_time = exec_dt + timedelta(hours=1)
+
     print(f"Target time: {target_time}")
 
     year = target_time.strftime("%Y")
