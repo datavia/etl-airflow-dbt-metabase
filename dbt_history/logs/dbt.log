@@ -50293,3 +50293,857 @@ LINE 34:     where load_dttm >= '2025-04-30T08:00:00' and load_dttm <...
 [0m10:13:55.170037 [debug] [Thread-3  ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '27b620d9-e57b-4f9c-a12f-4e23aefb2842', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7f11b070bd30>]}
 [0m10:13:55.171448 [error] [Thread-3  ]: 5 of 6 ERROR creating sql incremental model dm.dm_events ....................... [[31mERROR[0m in 0.17s]
 [0m10:13:55.183740 [debug] [Thread-3  ]: Finished running node model.dbt_lab08_project.dm_events
+[0m10:59:00.106048 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'invocation', 'label': 'start', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fac93e92880>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fac9366c3d0>, <snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fac925ef700>]}
+
+
+============================== 10:59:00.126360 | 4f508a52-92fd-4177-b3b4-7cc30f45ed44 ==============================
+[0m10:59:00.126360 [info ] [MainThread]: Running with dbt=1.8.7
+[0m10:59:00.128170 [debug] [MainThread]: running dbt with arguments {'printer_width': '80', 'indirect_selection': 'eager', 'log_cache_events': 'False', 'write_json': 'True', 'partial_parse': 'True', 'cache_selected_only': 'False', 'profiles_dir': '/dbt_history', 'debug': 'False', 'version_check': 'True', 'log_path': '/dbt_history/logs', 'fail_fast': 'False', 'warn_error': 'None', 'use_colors': 'True', 'use_experimental_parser': 'False', 'no_print': 'None', 'quiet': 'False', 'empty': 'False', 'warn_error_options': 'WarnErrorOptions(include=[], exclude=[])', 'invocation_command': 'dbt run --profiles-dir /dbt_history --project-dir /dbt_history --vars {"start_date": "2025-04-30T08:00:00", "end_date": "2025-04-30T09:00:00"}', 'introspect': 'True', 'log_format': 'default', 'target_path': 'None', 'static_parser': 'True', 'send_anonymous_usage_stats': 'True'}
+[0m10:59:00.636827 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'project_id', 'label': '4f508a52-92fd-4177-b3b4-7cc30f45ed44', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fac93627340>]}
+[0m10:59:00.764220 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'adapter_info', 'label': '4f508a52-92fd-4177-b3b4-7cc30f45ed44', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fac925668b0>]}
+[0m10:59:00.766773 [info ] [MainThread]: Registered adapter: postgres=1.8.2
+[0m10:59:00.824592 [debug] [MainThread]: checksum: c0cdfccc6beef27a274fdb0dbb837a8f42f43179fc430dbb6362226b233be2a0, vars: {'end_date': '2025-04-30T09:00:00', 'start_date': '2025-04-30T08:00:00'}, profile: , target: , version: 1.8.7
+[0m10:59:01.356171 [debug] [MainThread]: Partial parsing enabled: 0 files deleted, 0 files added, 1 files changed.
+[0m10:59:01.358045 [debug] [MainThread]: Partial parsing: updated file: dbt_lab08_project://models/dm/dm_events.sql
+[0m10:59:02.032512 [warn ] [MainThread]: [[33mWARNING[0m]: Deprecated functionality
+The `tests` config has been renamed to `data_tests`. Please see
+https://docs.getdbt.com/docs/build/data-tests#new-data_tests-syntax for more
+information.
+[0m10:59:02.034646 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'deprecation', 'label': '4f508a52-92fd-4177-b3b4-7cc30f45ed44', 'property_': 'warn', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fac90812640>]}
+[0m10:59:02.579097 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'load_project', 'label': '4f508a52-92fd-4177-b3b4-7cc30f45ed44', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fac90592f10>]}
+[0m10:59:03.280050 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'resource_counts', 'label': '4f508a52-92fd-4177-b3b4-7cc30f45ed44', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fac905610a0>]}
+[0m10:59:03.281340 [info ] [MainThread]: Found 2 seeds, 15 data tests, 6 models, 4 sources, 424 macros
+[0m10:59:03.282188 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '4f508a52-92fd-4177-b3b4-7cc30f45ed44', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fac90501c40>]}
+[0m10:59:03.287339 [info ] [MainThread]: 
+[0m10:59:03.289545 [debug] [MainThread]: Acquiring new postgres connection 'master'
+[0m10:59:03.300149 [debug] [ThreadPool]: Acquiring new postgres connection 'list_lab08_db'
+[0m10:59:03.314775 [debug] [ThreadPool]: Acquiring new postgres connection 'list_lab08_db'
+[0m10:59:03.515206 [debug] [ThreadPool]: Using postgres connection "list_lab08_db"
+[0m10:59:03.515718 [debug] [ThreadPool]: Using postgres connection "list_lab08_db"
+[0m10:59:03.517413 [debug] [ThreadPool]: On list_lab08_db: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "connection_name": "list_lab08_db"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m10:59:03.518258 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m10:59:03.516591 [debug] [ThreadPool]: On list_lab08_db: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "connection_name": "list_lab08_db"} */
+
+    select distinct nspname from pg_namespace
+  
+[0m10:59:03.519412 [debug] [ThreadPool]: Opening a new connection, currently in state init
+[0m10:59:03.604016 [debug] [ThreadPool]: SQL status: SELECT 87 in 0.086 seconds
+[0m10:59:03.607371 [debug] [ThreadPool]: On list_lab08_db: Close
+[0m10:59:03.609283 [debug] [ThreadPool]: SQL status: SELECT 87 in 0.090 seconds
+[0m10:59:03.613157 [debug] [ThreadPool]: On list_lab08_db: Close
+[0m10:59:03.616839 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_lab08_db, now list_lab08_db_ods)
+[0m10:59:03.627914 [debug] [ThreadPool]: Re-using an available connection from the pool (formerly list_lab08_db, now list_lab08_db_dm)
+[0m10:59:03.637887 [debug] [ThreadPool]: Using postgres connection "list_lab08_db_dm"
+[0m10:59:03.643905 [debug] [ThreadPool]: On list_lab08_db_dm: BEGIN
+[0m10:59:03.643273 [debug] [ThreadPool]: Using postgres connection "list_lab08_db_ods"
+[0m10:59:03.646311 [debug] [ThreadPool]: On list_lab08_db_ods: BEGIN
+[0m10:59:03.647215 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m10:59:03.645025 [debug] [ThreadPool]: Opening a new connection, currently in state closed
+[0m10:59:03.691461 [debug] [ThreadPool]: SQL status: BEGIN in 0.046 seconds
+[0m10:59:03.692640 [debug] [ThreadPool]: Using postgres connection "list_lab08_db_dm"
+[0m10:59:03.695059 [debug] [ThreadPool]: SQL status: BEGIN in 0.047 seconds
+[0m10:59:03.699995 [debug] [ThreadPool]: Using postgres connection "list_lab08_db_ods"
+[0m10:59:03.700673 [debug] [ThreadPool]: On list_lab08_db_ods: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "connection_name": "list_lab08_db_ods"} */
+select
+      'lab08_db' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'ods'
+    union all
+    select
+      'lab08_db' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'ods'
+    union all
+    select
+      'lab08_db' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'ods'
+  
+[0m10:59:03.695702 [debug] [ThreadPool]: On list_lab08_db_dm: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "connection_name": "list_lab08_db_dm"} */
+select
+      'lab08_db' as database,
+      tablename as name,
+      schemaname as schema,
+      'table' as type
+    from pg_tables
+    where schemaname ilike 'dm'
+    union all
+    select
+      'lab08_db' as database,
+      viewname as name,
+      schemaname as schema,
+      'view' as type
+    from pg_views
+    where schemaname ilike 'dm'
+    union all
+    select
+      'lab08_db' as database,
+      matviewname as name,
+      schemaname as schema,
+      'materialized_view' as type
+    from pg_matviews
+    where schemaname ilike 'dm'
+  
+[0m10:59:03.749856 [debug] [ThreadPool]: SQL status: SELECT 2 in 0.048 seconds
+[0m10:59:03.753501 [debug] [ThreadPool]: On list_lab08_db_dm: ROLLBACK
+[0m10:59:03.756202 [debug] [ThreadPool]: SQL status: SELECT 6 in 0.054 seconds
+[0m10:59:03.760228 [debug] [ThreadPool]: On list_lab08_db_ods: ROLLBACK
+[0m10:59:03.765483 [debug] [ThreadPool]: On list_lab08_db_ods: Close
+[0m10:59:03.768943 [debug] [ThreadPool]: On list_lab08_db_dm: Close
+[0m10:59:03.781800 [debug] [MainThread]: Using postgres connection "master"
+[0m10:59:03.782619 [debug] [MainThread]: On master: BEGIN
+[0m10:59:03.783554 [debug] [MainThread]: Opening a new connection, currently in state init
+[0m10:59:03.827361 [debug] [MainThread]: SQL status: BEGIN in 0.044 seconds
+[0m10:59:03.828428 [debug] [MainThread]: Using postgres connection "master"
+[0m10:59:03.830093 [debug] [MainThread]: On master: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "connection_name": "master"} */
+with relation as (
+        select
+            pg_rewrite.ev_class as class,
+            pg_rewrite.oid as id
+        from pg_rewrite
+    ),
+    class as (
+        select
+            oid as id,
+            relname as name,
+            relnamespace as schema,
+            relkind as kind
+        from pg_class
+    ),
+    dependency as (
+        select distinct
+            pg_depend.objid as id,
+            pg_depend.refobjid as ref
+        from pg_depend
+    ),
+    schema as (
+        select
+            pg_namespace.oid as id,
+            pg_namespace.nspname as name
+        from pg_namespace
+        where nspname != 'information_schema' and nspname not like 'pg\_%'
+    ),
+    referenced as (
+        select
+            relation.id AS id,
+            referenced_class.name ,
+            referenced_class.schema ,
+            referenced_class.kind
+        from relation
+        join class as referenced_class on relation.class=referenced_class.id
+        where referenced_class.kind in ('r', 'v', 'm')
+    ),
+    relationships as (
+        select
+            referenced.name as referenced_name,
+            referenced.schema as referenced_schema_id,
+            dependent_class.name as dependent_name,
+            dependent_class.schema as dependent_schema_id,
+            referenced.kind as kind
+        from referenced
+        join dependency on referenced.id=dependency.id
+        join class as dependent_class on dependency.ref=dependent_class.id
+        where
+            (referenced.name != dependent_class.name or
+             referenced.schema != dependent_class.schema)
+    )
+
+    select
+        referenced_schema.name as referenced_schema,
+        relationships.referenced_name as referenced_name,
+        dependent_schema.name as dependent_schema,
+        relationships.dependent_name as dependent_name
+    from relationships
+    join schema as dependent_schema on relationships.dependent_schema_id=dependent_schema.id
+    join schema as referenced_schema on relationships.referenced_schema_id=referenced_schema.id
+    group by referenced_schema, referenced_name, dependent_schema, dependent_name
+    order by referenced_schema, referenced_name, dependent_schema, dependent_name;
+[0m10:59:03.873035 [debug] [MainThread]: SQL status: SELECT 0 in 0.042 seconds
+[0m10:59:03.875556 [debug] [MainThread]: Sending event: {'category': 'dbt', 'action': 'runnable_timing', 'label': '4f508a52-92fd-4177-b3b4-7cc30f45ed44', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fac905614c0>]}
+[0m10:59:03.876843 [debug] [MainThread]: On master: ROLLBACK
+[0m10:59:03.879998 [debug] [MainThread]: Using postgres connection "master"
+[0m10:59:03.880830 [debug] [MainThread]: On master: BEGIN
+[0m10:59:03.885285 [debug] [MainThread]: SQL status: BEGIN in 0.004 seconds
+[0m10:59:03.886473 [debug] [MainThread]: On master: COMMIT
+[0m10:59:03.887184 [debug] [MainThread]: Using postgres connection "master"
+[0m10:59:03.887758 [debug] [MainThread]: On master: COMMIT
+[0m10:59:03.891230 [debug] [MainThread]: SQL status: COMMIT in 0.003 seconds
+[0m10:59:03.892273 [debug] [MainThread]: On master: Close
+[0m10:59:03.893305 [info ] [MainThread]: Concurrency: 4 threads (target='prod')
+[0m10:59:03.893859 [info ] [MainThread]: 
+[0m10:59:03.917204 [debug] [Thread-1  ]: Began running node model.dbt_lab08_project.ods_browser_events
+[0m10:59:03.918518 [debug] [Thread-2  ]: Began running node model.dbt_lab08_project.ods_device_events
+[0m10:59:03.919570 [debug] [Thread-3  ]: Began running node model.dbt_lab08_project.ods_geo_events
+[0m10:59:03.922326 [info ] [Thread-1  ]: 1 of 6 START sql incremental model ods.ods_browser_events ...................... [RUN]
+[0m10:59:03.925139 [debug] [Thread-1  ]: Re-using an available connection from the pool (formerly list_lab08_db_ods, now model.dbt_lab08_project.ods_browser_events)
+[0m10:59:03.925689 [debug] [Thread-1  ]: Began compiling node model.dbt_lab08_project.ods_browser_events
+[0m10:59:03.937125 [debug] [Thread-4  ]: Began running node model.dbt_lab08_project.ods_location_events
+[0m10:59:03.923748 [info ] [Thread-2  ]: 2 of 6 START sql incremental model ods.ods_device_events ....................... [RUN]
+[0m10:59:03.938752 [debug] [Thread-2  ]: Re-using an available connection from the pool (formerly list_lab08_db_dm, now model.dbt_lab08_project.ods_device_events)
+[0m10:59:03.939409 [debug] [Thread-2  ]: Began compiling node model.dbt_lab08_project.ods_device_events
+[0m10:59:03.924362 [info ] [Thread-3  ]: 3 of 6 START sql incremental model ods.ods_geo_events .......................... [RUN]
+[0m10:59:03.948522 [debug] [Thread-3  ]: Acquiring new postgres connection 'model.dbt_lab08_project.ods_geo_events'
+[0m10:59:03.949177 [debug] [Thread-3  ]: Began compiling node model.dbt_lab08_project.ods_geo_events
+[0m10:59:03.937944 [info ] [Thread-4  ]: 4 of 6 START sql incremental model ods.ods_location_events ..................... [RUN]
+[0m10:59:03.966903 [debug] [Thread-4  ]: Acquiring new postgres connection 'model.dbt_lab08_project.ods_location_events'
+[0m10:59:03.967736 [debug] [Thread-4  ]: Began compiling node model.dbt_lab08_project.ods_location_events
+[0m10:59:04.003101 [debug] [Thread-3  ]: Writing injected SQL for node "model.dbt_lab08_project.ods_geo_events"
+[0m10:59:04.042704 [debug] [Thread-1  ]: Writing injected SQL for node "model.dbt_lab08_project.ods_browser_events"
+[0m10:59:04.044910 [debug] [Thread-3  ]: Began executing node model.dbt_lab08_project.ods_geo_events
+[0m10:59:04.046221 [debug] [Thread-1  ]: Began executing node model.dbt_lab08_project.ods_browser_events
+[0m10:59:04.054584 [debug] [Thread-4  ]: Writing injected SQL for node "model.dbt_lab08_project.ods_location_events"
+[0m10:59:04.055914 [debug] [Thread-2  ]: Writing injected SQL for node "model.dbt_lab08_project.ods_device_events"
+[0m10:59:04.081956 [debug] [Thread-2  ]: Began executing node model.dbt_lab08_project.ods_device_events
+[0m10:59:04.083971 [debug] [Thread-4  ]: Began executing node model.dbt_lab08_project.ods_location_events
+[0m10:59:04.537830 [debug] [Thread-3  ]: Using postgres connection "model.dbt_lab08_project.ods_geo_events"
+[0m10:59:04.554137 [debug] [Thread-3  ]: On model.dbt_lab08_project.ods_geo_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_geo_events"} */
+
+    
+  
+    
+
+  create temporary table "ods_geo_events__dbt_tmp105904388151"
+  
+  
+    as
+  
+  (
+    
+
+
+select
+    load_dttm as load_hour,
+    (json_data ->> 'click_id')::uuid as click_id,
+    (json_data ->> 'geo_latitude')::float as geo_latitude,
+    (json_data ->> 'geo_longitude')::float as geo_longitude,
+    json_data ->> 'geo_country' as geo_country,
+    json_data ->> 'geo_timezone' as geo_timezone,
+    json_data ->> 'geo_region_name' as geo_region_name,
+    json_data ->> 'ip_address' as ip_address
+from "lab08_db"."stg"."stg_geo_events"
+
+
+    where load_dttm >= '2025-04-30T08:00:00' and load_dttm < '2025-04-30T09:00:00'
+
+  );
+  
+  
+[0m10:59:04.554929 [debug] [Thread-3  ]: Opening a new connection, currently in state init
+[0m10:59:04.533909 [debug] [Thread-1  ]: Using postgres connection "model.dbt_lab08_project.ods_browser_events"
+[0m10:59:04.556183 [debug] [Thread-1  ]: On model.dbt_lab08_project.ods_browser_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_browser_events"} */
+
+    
+  
+    
+
+  create temporary table "ods_browser_events__dbt_tmp105904475341"
+  
+  
+    as
+  
+  (
+    
+
+
+select
+    load_dttm as load_hour,
+    (json_data ->> 'event_id')::uuid as event_id,
+    (json_data ->> 'event_timestamp')::timestamp as event_timestamp,
+    (json_data ->> 'click_id')::uuid as click_id,
+    json_data ->> 'event_type' as event_type,
+    json_data ->> 'browser_name' as browser_name,
+    json_data ->> 'browser_user_agent' as browser_user_agent,
+    json_data ->> 'browser_language' as browser_language
+from "lab08_db"."stg"."stg_browser_events"
+
+
+    where load_dttm >= '2025-04-30T08:00:00' and load_dttm < '2025-04-30T09:00:00'
+
+  );
+  
+  
+[0m10:59:04.556637 [debug] [Thread-1  ]: Opening a new connection, currently in state closed
+[0m10:59:04.544116 [debug] [Thread-4  ]: Using postgres connection "model.dbt_lab08_project.ods_location_events"
+[0m10:59:04.557447 [debug] [Thread-4  ]: On model.dbt_lab08_project.ods_location_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_location_events"} */
+
+    
+  
+    
+
+  create temporary table "ods_location_events__dbt_tmp105904397456"
+  
+  
+    as
+  
+  (
+    
+
+
+select
+    load_dttm as load_hour,
+    (json_data ->> 'event_id')::uuid as event_id,
+    json_data ->> 'page_url' as page_url,
+    json_data ->> 'page_url_path' as page_url_path,
+    json_data ->> 'referer_url' as referer_url,
+    json_data ->> 'referer_medium' as referer_medium,
+    json_data ->> 'utm_medium' as utm_medium,
+    json_data ->> 'utm_source' as utm_source,
+    json_data ->> 'utm_content' as utm_content,
+    json_data ->> 'utm_campaign' as utm_campaign
+from "lab08_db"."stg"."stg_location_events"
+
+
+    where load_dttm >= '2025-04-30T08:00:00' and load_dttm < '2025-04-30T09:00:00'
+
+  );
+  
+  
+[0m10:59:04.557886 [debug] [Thread-4  ]: Opening a new connection, currently in state init
+[0m10:59:04.553468 [debug] [Thread-2  ]: Using postgres connection "model.dbt_lab08_project.ods_device_events"
+[0m10:59:04.559341 [debug] [Thread-2  ]: On model.dbt_lab08_project.ods_device_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_device_events"} */
+
+    
+  
+    
+
+  create temporary table "ods_device_events__dbt_tmp105904424044"
+  
+  
+    as
+  
+  (
+    
+
+
+select
+    load_dttm as load_hour,
+    (json_data ->> 'click_id')::uuid as click_id,
+    (json_data ->> 'device_is_mobile')::bool as device_is_mobile,
+    (json_data ->> 'user_domain_id')::uuid as user_domain_id,
+    json_data ->> 'os' as os,
+    json_data ->> 'os_name' as os_name,
+    json_data ->> 'os_timezone' as os_timezone,
+    json_data ->> 'device_type' as device_type,
+    json_data ->> 'user_custom_id' as user_custom_id
+from "lab08_db"."stg"."stg_device_events"
+
+
+    where load_dttm >= '2025-04-30T08:00:00' and load_dttm < '2025-04-30T09:00:00'
+
+  );
+  
+  
+[0m10:59:04.559840 [debug] [Thread-2  ]: Opening a new connection, currently in state closed
+[0m10:59:54.744694 [debug] [Thread-3  ]: SQL status: SELECT 12088 in 50.190 seconds
+[0m10:59:54.788852 [debug] [Thread-3  ]: Using postgres connection "model.dbt_lab08_project.ods_geo_events"
+[0m10:59:54.790037 [debug] [Thread-3  ]: On model.dbt_lab08_project.ods_geo_events: BEGIN
+[0m10:59:54.796199 [debug] [Thread-3  ]: SQL status: BEGIN in 0.005 seconds
+[0m10:59:54.797546 [debug] [Thread-3  ]: Using postgres connection "model.dbt_lab08_project.ods_geo_events"
+[0m10:59:54.798315 [debug] [Thread-3  ]: On model.dbt_lab08_project.ods_geo_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_geo_events"} */
+
+      select
+          column_name,
+          data_type,
+          character_maximum_length,
+          numeric_precision,
+          numeric_scale
+
+      from INFORMATION_SCHEMA.columns
+      where table_name = 'ods_geo_events__dbt_tmp105904388151'
+        
+      order by ordinal_position
+
+  
+[0m10:59:55.204266 [debug] [Thread-3  ]: SQL status: SELECT 8 in 0.405 seconds
+[0m10:59:55.214415 [debug] [Thread-3  ]: Using postgres connection "model.dbt_lab08_project.ods_geo_events"
+[0m10:59:55.215495 [debug] [Thread-3  ]: On model.dbt_lab08_project.ods_geo_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_geo_events"} */
+
+      select
+          column_name,
+          data_type,
+          character_maximum_length,
+          numeric_precision,
+          numeric_scale
+
+      from "lab08_db".INFORMATION_SCHEMA.columns
+      where table_name = 'ods_geo_events'
+        
+        and table_schema = 'ods'
+        
+      order by ordinal_position
+
+  
+[0m10:59:55.261201 [debug] [Thread-3  ]: SQL status: SELECT 8 in 0.044 seconds
+[0m10:59:55.280194 [debug] [Thread-3  ]: Using postgres connection "model.dbt_lab08_project.ods_geo_events"
+[0m10:59:55.281710 [debug] [Thread-3  ]: On model.dbt_lab08_project.ods_geo_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_geo_events"} */
+
+      select
+          column_name,
+          data_type,
+          character_maximum_length,
+          numeric_precision,
+          numeric_scale
+
+      from "lab08_db".INFORMATION_SCHEMA.columns
+      where table_name = 'ods_geo_events'
+        
+        and table_schema = 'ods'
+        
+      order by ordinal_position
+
+  
+[0m10:59:55.315919 [debug] [Thread-3  ]: SQL status: SELECT 8 in 0.033 seconds
+[0m10:59:55.337350 [debug] [Thread-3  ]: Writing runtime sql for node "model.dbt_lab08_project.ods_geo_events"
+[0m10:59:55.339641 [debug] [Thread-3  ]: Using postgres connection "model.dbt_lab08_project.ods_geo_events"
+[0m10:59:55.340675 [debug] [Thread-3  ]: On model.dbt_lab08_project.ods_geo_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_geo_events"} */
+
+      insert into "lab08_db"."ods"."ods_geo_events" ("load_hour", "click_id", "geo_latitude", "geo_longitude", "geo_country", "geo_timezone", "geo_region_name", "ip_address")
+    (
+        select "load_hour", "click_id", "geo_latitude", "geo_longitude", "geo_country", "geo_timezone", "geo_region_name", "ip_address"
+        from "ods_geo_events__dbt_tmp105904388151"
+    )
+
+
+  
+[0m10:59:55.488294 [debug] [Thread-3  ]: SQL status: INSERT 0 12088 in 0.147 seconds
+[0m10:59:55.526431 [debug] [Thread-3  ]: On model.dbt_lab08_project.ods_geo_events: COMMIT
+[0m10:59:55.527386 [debug] [Thread-3  ]: Using postgres connection "model.dbt_lab08_project.ods_geo_events"
+[0m10:59:55.528445 [debug] [Thread-3  ]: On model.dbt_lab08_project.ods_geo_events: COMMIT
+[0m10:59:55.546416 [debug] [Thread-3  ]: SQL status: COMMIT in 0.017 seconds
+[0m10:59:55.551060 [debug] [Thread-3  ]: On model.dbt_lab08_project.ods_geo_events: Close
+[0m10:59:55.554873 [debug] [Thread-3  ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '4f508a52-92fd-4177-b3b4-7cc30f45ed44', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fac90c41d30>]}
+[0m10:59:55.556503 [info ] [Thread-3  ]: 3 of 6 OK created sql incremental model ods.ods_geo_events ..................... [[32mINSERT 0 12088[0m in 51.60s]
+[0m10:59:55.558324 [debug] [Thread-3  ]: Finished running node model.dbt_lab08_project.ods_geo_events
+[0m11:00:00.255916 [debug] [Thread-2  ]: SQL status: SELECT 12088 in 55.696 seconds
+[0m11:00:00.277441 [debug] [Thread-2  ]: Using postgres connection "model.dbt_lab08_project.ods_device_events"
+[0m11:00:00.278492 [debug] [Thread-2  ]: On model.dbt_lab08_project.ods_device_events: BEGIN
+[0m11:00:00.287285 [debug] [Thread-2  ]: SQL status: BEGIN in 0.008 seconds
+[0m11:00:00.288272 [debug] [Thread-2  ]: Using postgres connection "model.dbt_lab08_project.ods_device_events"
+[0m11:00:00.293630 [debug] [Thread-2  ]: On model.dbt_lab08_project.ods_device_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_device_events"} */
+
+      select
+          column_name,
+          data_type,
+          character_maximum_length,
+          numeric_precision,
+          numeric_scale
+
+      from INFORMATION_SCHEMA.columns
+      where table_name = 'ods_device_events__dbt_tmp105904424044'
+        
+      order by ordinal_position
+
+  
+[0m11:00:00.405473 [debug] [Thread-2  ]: SQL status: SELECT 9 in 0.104 seconds
+[0m11:00:00.441096 [debug] [Thread-2  ]: Using postgres connection "model.dbt_lab08_project.ods_device_events"
+[0m11:00:00.442089 [debug] [Thread-2  ]: On model.dbt_lab08_project.ods_device_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_device_events"} */
+
+      select
+          column_name,
+          data_type,
+          character_maximum_length,
+          numeric_precision,
+          numeric_scale
+
+      from "lab08_db".INFORMATION_SCHEMA.columns
+      where table_name = 'ods_device_events'
+        
+        and table_schema = 'ods'
+        
+      order by ordinal_position
+
+  
+[0m11:00:00.458597 [debug] [Thread-2  ]: SQL status: SELECT 9 in 0.015 seconds
+[0m11:00:00.488681 [debug] [Thread-2  ]: Using postgres connection "model.dbt_lab08_project.ods_device_events"
+[0m11:00:00.505892 [debug] [Thread-2  ]: On model.dbt_lab08_project.ods_device_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_device_events"} */
+
+      select
+          column_name,
+          data_type,
+          character_maximum_length,
+          numeric_precision,
+          numeric_scale
+
+      from "lab08_db".INFORMATION_SCHEMA.columns
+      where table_name = 'ods_device_events'
+        
+        and table_schema = 'ods'
+        
+      order by ordinal_position
+
+  
+[0m11:00:00.515305 [debug] [Thread-2  ]: SQL status: SELECT 9 in 0.008 seconds
+[0m11:00:00.520284 [debug] [Thread-2  ]: Writing runtime sql for node "model.dbt_lab08_project.ods_device_events"
+[0m11:00:00.528127 [debug] [Thread-2  ]: Using postgres connection "model.dbt_lab08_project.ods_device_events"
+[0m11:00:00.537774 [debug] [Thread-2  ]: On model.dbt_lab08_project.ods_device_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_device_events"} */
+
+      insert into "lab08_db"."ods"."ods_device_events" ("load_hour", "click_id", "device_is_mobile", "user_domain_id", "os", "os_name", "os_timezone", "device_type", "user_custom_id")
+    (
+        select "load_hour", "click_id", "device_is_mobile", "user_domain_id", "os", "os_name", "os_timezone", "device_type", "user_custom_id"
+        from "ods_device_events__dbt_tmp105904424044"
+    )
+
+
+  
+[0m11:00:00.621984 [debug] [Thread-2  ]: SQL status: INSERT 0 12088 in 0.083 seconds
+[0m11:00:00.625844 [debug] [Thread-2  ]: On model.dbt_lab08_project.ods_device_events: COMMIT
+[0m11:00:00.626945 [debug] [Thread-2  ]: Using postgres connection "model.dbt_lab08_project.ods_device_events"
+[0m11:00:00.627627 [debug] [Thread-2  ]: On model.dbt_lab08_project.ods_device_events: COMMIT
+[0m11:00:00.641350 [debug] [Thread-2  ]: SQL status: COMMIT in 0.013 seconds
+[0m11:00:00.643323 [debug] [Thread-2  ]: On model.dbt_lab08_project.ods_device_events: Close
+[0m11:00:00.645593 [debug] [Thread-2  ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '4f508a52-92fd-4177-b3b4-7cc30f45ed44', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fac90c413d0>]}
+[0m11:00:00.647024 [info ] [Thread-2  ]: 2 of 6 OK created sql incremental model ods.ods_device_events .................. [[32mINSERT 0 12088[0m in 56.71s]
+[0m11:00:00.648160 [debug] [Thread-2  ]: Finished running node model.dbt_lab08_project.ods_device_events
+[0m11:00:00.978361 [debug] [Thread-4  ]: SQL status: SELECT 12088 in 56.420 seconds
+[0m11:00:00.987331 [debug] [Thread-4  ]: Using postgres connection "model.dbt_lab08_project.ods_location_events"
+[0m11:00:00.988317 [debug] [Thread-4  ]: On model.dbt_lab08_project.ods_location_events: BEGIN
+[0m11:00:00.991766 [debug] [Thread-4  ]: SQL status: BEGIN in 0.002 seconds
+[0m11:00:00.992584 [debug] [Thread-4  ]: Using postgres connection "model.dbt_lab08_project.ods_location_events"
+[0m11:00:00.993873 [debug] [Thread-4  ]: On model.dbt_lab08_project.ods_location_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_location_events"} */
+
+      select
+          column_name,
+          data_type,
+          character_maximum_length,
+          numeric_precision,
+          numeric_scale
+
+      from INFORMATION_SCHEMA.columns
+      where table_name = 'ods_location_events__dbt_tmp105904397456'
+        
+      order by ordinal_position
+
+  
+[0m11:00:01.016805 [debug] [Thread-4  ]: SQL status: SELECT 10 in 0.022 seconds
+[0m11:00:01.029536 [debug] [Thread-4  ]: Using postgres connection "model.dbt_lab08_project.ods_location_events"
+[0m11:00:01.030534 [debug] [Thread-4  ]: On model.dbt_lab08_project.ods_location_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_location_events"} */
+
+      select
+          column_name,
+          data_type,
+          character_maximum_length,
+          numeric_precision,
+          numeric_scale
+
+      from "lab08_db".INFORMATION_SCHEMA.columns
+      where table_name = 'ods_location_events'
+        
+        and table_schema = 'ods'
+        
+      order by ordinal_position
+
+  
+[0m11:00:01.049431 [debug] [Thread-4  ]: SQL status: SELECT 10 in 0.018 seconds
+[0m11:00:01.066644 [debug] [Thread-4  ]: Using postgres connection "model.dbt_lab08_project.ods_location_events"
+[0m11:00:01.067784 [debug] [Thread-4  ]: On model.dbt_lab08_project.ods_location_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_location_events"} */
+
+      select
+          column_name,
+          data_type,
+          character_maximum_length,
+          numeric_precision,
+          numeric_scale
+
+      from "lab08_db".INFORMATION_SCHEMA.columns
+      where table_name = 'ods_location_events'
+        
+        and table_schema = 'ods'
+        
+      order by ordinal_position
+
+  
+[0m11:00:01.082394 [debug] [Thread-4  ]: SQL status: SELECT 10 in 0.013 seconds
+[0m11:00:01.087606 [debug] [Thread-4  ]: Writing runtime sql for node "model.dbt_lab08_project.ods_location_events"
+[0m11:00:01.090114 [debug] [Thread-4  ]: Using postgres connection "model.dbt_lab08_project.ods_location_events"
+[0m11:00:01.091645 [debug] [Thread-4  ]: On model.dbt_lab08_project.ods_location_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_location_events"} */
+
+      insert into "lab08_db"."ods"."ods_location_events" ("load_hour", "event_id", "page_url", "page_url_path", "referer_url", "referer_medium", "utm_medium", "utm_source", "utm_content", "utm_campaign")
+    (
+        select "load_hour", "event_id", "page_url", "page_url_path", "referer_url", "referer_medium", "utm_medium", "utm_source", "utm_content", "utm_campaign"
+        from "ods_location_events__dbt_tmp105904397456"
+    )
+
+
+  
+[0m11:00:01.135793 [debug] [Thread-4  ]: SQL status: INSERT 0 12088 in 0.043 seconds
+[0m11:00:01.139595 [debug] [Thread-4  ]: On model.dbt_lab08_project.ods_location_events: COMMIT
+[0m11:00:01.140871 [debug] [Thread-4  ]: Using postgres connection "model.dbt_lab08_project.ods_location_events"
+[0m11:00:01.141775 [debug] [Thread-4  ]: On model.dbt_lab08_project.ods_location_events: COMMIT
+[0m11:00:01.160755 [debug] [Thread-4  ]: SQL status: COMMIT in 0.017 seconds
+[0m11:00:01.163558 [debug] [Thread-4  ]: On model.dbt_lab08_project.ods_location_events: Close
+[0m11:00:01.164795 [debug] [Thread-4  ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '4f508a52-92fd-4177-b3b4-7cc30f45ed44', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fac90be52b0>]}
+[0m11:00:01.166608 [info ] [Thread-4  ]: 4 of 6 OK created sql incremental model ods.ods_location_events ................ [[32mINSERT 0 12088[0m in 57.20s]
+[0m11:00:01.169742 [debug] [Thread-4  ]: Finished running node model.dbt_lab08_project.ods_location_events
+[0m11:00:04.930543 [debug] [Thread-1  ]: SQL status: SELECT 12088 in 60.374 seconds
+[0m11:00:04.939009 [debug] [Thread-1  ]: Using postgres connection "model.dbt_lab08_project.ods_browser_events"
+[0m11:00:04.961713 [debug] [Thread-1  ]: On model.dbt_lab08_project.ods_browser_events: BEGIN
+[0m11:00:04.965123 [debug] [Thread-1  ]: SQL status: BEGIN in 0.002 seconds
+[0m11:00:04.966970 [debug] [Thread-1  ]: Using postgres connection "model.dbt_lab08_project.ods_browser_events"
+[0m11:00:04.982218 [debug] [Thread-1  ]: On model.dbt_lab08_project.ods_browser_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_browser_events"} */
+
+      select
+          column_name,
+          data_type,
+          character_maximum_length,
+          numeric_precision,
+          numeric_scale
+
+      from INFORMATION_SCHEMA.columns
+      where table_name = 'ods_browser_events__dbt_tmp105904475341'
+        
+      order by ordinal_position
+
+  
+[0m11:00:05.040464 [debug] [Thread-1  ]: SQL status: SELECT 8 in 0.057 seconds
+[0m11:00:05.109972 [debug] [Thread-1  ]: Using postgres connection "model.dbt_lab08_project.ods_browser_events"
+[0m11:00:05.111169 [debug] [Thread-1  ]: On model.dbt_lab08_project.ods_browser_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_browser_events"} */
+
+      select
+          column_name,
+          data_type,
+          character_maximum_length,
+          numeric_precision,
+          numeric_scale
+
+      from "lab08_db".INFORMATION_SCHEMA.columns
+      where table_name = 'ods_browser_events'
+        
+        and table_schema = 'ods'
+        
+      order by ordinal_position
+
+  
+[0m11:00:05.136608 [debug] [Thread-1  ]: SQL status: SELECT 8 in 0.007 seconds
+[0m11:00:05.187090 [debug] [Thread-1  ]: Using postgres connection "model.dbt_lab08_project.ods_browser_events"
+[0m11:00:05.188324 [debug] [Thread-1  ]: On model.dbt_lab08_project.ods_browser_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_browser_events"} */
+
+      select
+          column_name,
+          data_type,
+          character_maximum_length,
+          numeric_precision,
+          numeric_scale
+
+      from "lab08_db".INFORMATION_SCHEMA.columns
+      where table_name = 'ods_browser_events'
+        
+        and table_schema = 'ods'
+        
+      order by ordinal_position
+
+  
+[0m11:00:05.210215 [debug] [Thread-1  ]: SQL status: SELECT 8 in 0.006 seconds
+[0m11:00:05.231551 [debug] [Thread-1  ]: Writing runtime sql for node "model.dbt_lab08_project.ods_browser_events"
+[0m11:00:05.242094 [debug] [Thread-1  ]: Using postgres connection "model.dbt_lab08_project.ods_browser_events"
+[0m11:00:05.243165 [debug] [Thread-1  ]: On model.dbt_lab08_project.ods_browser_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.ods_browser_events"} */
+
+      insert into "lab08_db"."ods"."ods_browser_events" ("load_hour", "event_id", "event_timestamp", "click_id", "event_type", "browser_name", "browser_user_agent", "browser_language")
+    (
+        select "load_hour", "event_id", "event_timestamp", "click_id", "event_type", "browser_name", "browser_user_agent", "browser_language"
+        from "ods_browser_events__dbt_tmp105904475341"
+    )
+
+
+  
+[0m11:00:05.297815 [debug] [Thread-1  ]: SQL status: INSERT 0 12088 in 0.037 seconds
+[0m11:00:05.302378 [debug] [Thread-1  ]: On model.dbt_lab08_project.ods_browser_events: COMMIT
+[0m11:00:05.303233 [debug] [Thread-1  ]: Using postgres connection "model.dbt_lab08_project.ods_browser_events"
+[0m11:00:05.303857 [debug] [Thread-1  ]: On model.dbt_lab08_project.ods_browser_events: COMMIT
+[0m11:00:05.327763 [debug] [Thread-1  ]: SQL status: COMMIT in 0.023 seconds
+[0m11:00:05.330840 [debug] [Thread-1  ]: On model.dbt_lab08_project.ods_browser_events: Close
+[0m11:00:05.332404 [debug] [Thread-1  ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '4f508a52-92fd-4177-b3b4-7cc30f45ed44', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fac90c41f70>]}
+[0m11:00:05.354887 [info ] [Thread-1  ]: 1 of 6 OK created sql incremental model ods.ods_browser_events ................. [[32mINSERT 0 12088[0m in 61.41s]
+[0m11:00:05.362606 [debug] [Thread-1  ]: Finished running node model.dbt_lab08_project.ods_browser_events
+[0m11:00:05.382450 [debug] [Thread-3  ]: Began running node model.dbt_lab08_project.dm_events
+[0m11:00:05.383861 [debug] [Thread-2  ]: Began running node model.dbt_lab08_project.dm_sales
+[0m11:00:05.385314 [info ] [Thread-3  ]: 5 of 6 START sql incremental model dm.dm_events ................................ [RUN]
+[0m11:00:05.389537 [debug] [Thread-3  ]: Re-using an available connection from the pool (formerly model.dbt_lab08_project.ods_geo_events, now model.dbt_lab08_project.dm_events)
+[0m11:00:05.387130 [info ] [Thread-2  ]: 6 of 6 START sql incremental model dm.dm_sales ................................. [RUN]
+[0m11:00:05.393592 [debug] [Thread-2  ]: Re-using an available connection from the pool (formerly model.dbt_lab08_project.ods_device_events, now model.dbt_lab08_project.dm_sales)
+[0m11:00:05.394424 [debug] [Thread-2  ]: Began compiling node model.dbt_lab08_project.dm_sales
+[0m11:00:05.390441 [debug] [Thread-3  ]: Began compiling node model.dbt_lab08_project.dm_events
+[0m11:00:05.454294 [debug] [Thread-3  ]: Writing injected SQL for node "model.dbt_lab08_project.dm_events"
+[0m11:00:05.478565 [debug] [Thread-3  ]: Began executing node model.dbt_lab08_project.dm_events
+[0m11:00:05.472542 [debug] [Thread-2  ]: Writing injected SQL for node "model.dbt_lab08_project.dm_sales"
+[0m11:00:05.520197 [debug] [Thread-2  ]: Began executing node model.dbt_lab08_project.dm_sales
+[0m11:00:05.596481 [debug] [Thread-2  ]: Using postgres connection "model.dbt_lab08_project.dm_sales"
+[0m11:00:05.625529 [debug] [Thread-2  ]: On model.dbt_lab08_project.dm_sales: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.dm_sales"} */
+
+    
+  
+    
+
+  create temporary table "dm_sales__dbt_tmp110005571044"
+  
+  
+    as
+  
+  (
+    
+
+
+with unique_devices as (
+    select distinct
+        click_id,
+        os,
+        os_name,
+        device_type,
+        user_custom_id
+    from "lab08_db"."ods"."ods_device_events"
+),
+
+unique_geo as (
+    select distinct
+        click_id,
+        geo_country,
+        geo_region_name,
+        geo_latitude,
+        geo_longitude
+    from "lab08_db"."ods"."ods_geo_events"
+),
+
+cte_lead as (
+    select
+        obe.load_hour,
+        event_timestamp,
+        event_type,
+        page_url,
+        page_url_path,
+        referer_url,
+        referer_medium,
+        utm_medium,
+        utm_source,
+        utm_content,
+        utm_campaign,
+        browser_name,
+        browser_user_agent,
+        browser_language,
+        os,
+        os_name,
+        user_custom_id,
+        device_type,
+        geo_country,
+        geo_region_name,
+        geo_latitude,
+        geo_longitude,
+        LEAD(page_url_path, 1) over w as next_page_lead1,
+        LEAD(page_url_path, 2) over w as next_page_lead2,
+        LEAD(page_url_path, 3) over w as next_page_lead3,
+        LEAD(event_timestamp, 3) over w as confirmation_timestamp
+    from "lab08_db"."ods"."ods_location_events" as ole
+    inner join
+        "lab08_db"."ods"."ods_browser_events" as obe
+        on ole.event_id = obe.event_id
+    inner join unique_devices as ud on obe.click_id = ud.click_id
+    inner join unique_geo as ug on obe.click_id = ug.click_id
+    where
+        ole.page_url_path != '/home'
+        
+            and ole.load_hour >= '2025-04-30T08:00:00' and ole.load_hour < '2025-04-30T09:00:00'
+            and obe.load_hour >= '2025-04-30T08:00:00' and obe.load_hour < '2025-04-30T09:00:00'
+        
+    window w as (
+        partition by user_custom_id
+        order by event_timestamp
+    )
+)
+
+select
+    load_hour,
+    user_custom_id as sale_custom_id,
+    event_timestamp,
+    confirmation_timestamp as sale_timestamp,
+    1 as sale_item_cnt,
+    browser_name as sale_browser,
+    device_type as sale_platform,
+    page_url_path as sale_page_before,
+    utm_source as sale_source,
+    utm_campaign as sale_utm_campaign,
+    referer_url as sale_referer_url,
+    referer_medium as sale_referer_medium,
+    utm_content as sale_utm_content,
+    geo_country as sale_geo_country,
+    geo_region_name as sale_geo_region_name,
+    geo_latitude as sale_geo_latitude,
+    geo_longitude as sale_geo_longitude,
+    EXTRACT(hour from confirmation_timestamp) as sale_hour,
+    REPLACE(page_url_path, '/product_', '') as clear_sale_page_before,
+    COALESCE(ic.city_ru, '') as sale_geo_region_name_ru,
+    COALESCE(i.item_ru, '') as clear_sale_page_before_ru
+from cte_lead
+left join "lab08_db"."ods"."italian_cities" as ic on ic.city_en = geo_region_name
+left join
+    "lab08_db"."ods"."items" as i
+    on i.item_en = REPLACE(page_url_path, '/product_', '')
+where
+    (next_page_lead1, next_page_lead2, next_page_lead3)
+    = ('/cart', '/payment', '/confirmation')
+    and page_url_path not in ('/payment', '/cart', '/confirmation')
+  );
+  
+  
+[0m11:00:05.626715 [debug] [Thread-2  ]: Opening a new connection, currently in state closed
+[0m11:00:05.607832 [debug] [Thread-3  ]: Using postgres connection "model.dbt_lab08_project.dm_events"
+[0m11:00:05.629037 [debug] [Thread-3  ]: On model.dbt_lab08_project.dm_events: /* {"app": "dbt", "dbt_version": "1.8.7", "profile_name": "dbt_lab08_project", "target_name": "prod", "node_id": "model.dbt_lab08_project.dm_events"} */
+
+    
+  
+    
+
+  create temporary table "dm_events__dbt_tmp110005551971"
+  
+  
+    as
+  
+  (
+    
+
+
+with distinct_clicks as (
+    select distinct
+        click_id,
+        device_type
+    from "lab08_db"."ods"."ods_device_events"
+)
+
+select
+    e.load_hour,
+    e.event_id,
+    e.event_type,
+    e.event_timestamp,
+    e.browser_name,
+    d.device_type,
+    EXTRACT(hour from e.event_timestamp) as event_hour
+from "lab08_db"."ods"."ods_browser_events" as e
+inner join distinct_clicks as d on e.click_id = d.click_id
+
+    where load_hour >= '2025-04-30T08:00:00' and load_dttm < '2025-04-30T09:00:00'
+
+  );
+  
+  
+[0m11:00:05.630047 [debug] [Thread-3  ]: Opening a new connection, currently in state closed
+[0m11:00:05.752292 [debug] [Thread-3  ]: Postgres adapter: Postgres error: column "load_dttm" does not exist
+LINE 34:     where load_hour >= '2025-04-30T08:00:00' and load_dttm <...
+                                                          ^
+
+[0m11:00:05.753502 [debug] [Thread-3  ]: On model.dbt_lab08_project.dm_events: Close
+[0m11:00:05.785027 [debug] [Thread-3  ]: Database Error in model dm_events (models/dm/dm_events.sql)
+  column "load_dttm" does not exist
+  LINE 34:     where load_hour >= '2025-04-30T08:00:00' and load_dttm <...
+                                                            ^
+[0m11:00:05.787417 [debug] [Thread-3  ]: Sending event: {'category': 'dbt', 'action': 'run_model', 'label': '4f508a52-92fd-4177-b3b4-7cc30f45ed44', 'context': [<snowplow_tracker.self_describing_json.SelfDescribingJson object at 0x7fac8c84ae20>]}
+[0m11:00:05.818784 [error] [Thread-3  ]: 5 of 6 ERROR creating sql incremental model dm.dm_events ....................... [[31mERROR[0m in 0.40s]
+[0m11:00:05.843453 [debug] [Thread-3  ]: Finished running node model.dbt_lab08_project.dm_events
