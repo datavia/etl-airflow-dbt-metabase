@@ -28,17 +28,26 @@ with DAG(
     tags=['manual', 'etl']
 ) as dag:
 
-    event_types = Variable.get("lab08_event_types", default_var=None)
-    # event_types = ['browser_events', 'device_events', 'geo_events', 'location_events']
+    event_types = Variable.get(
+        "lab08_event_types",
+        default=None,
+        deserialize_json=True
+    )
 
     load_data_tasks = []
 
-    for event in event_types:
-        task = PythonOperator(
-            task_id=f'load_stg_{event}',
-            python_callable=partial(load_stg_history.run_with_variables, event_type=event),
-        )
-        load_data_tasks.append(task)
+    if isinstance(event_types, list):
+        for event in event_types:
+            task = PythonOperator(
+                task_id=f'load_stg_{event}',
+                python_callable=partial(
+                    load_stg_history.run_with_variables,
+                    event_type=event
+                ),  
+            )
+            load_data_tasks.append(task)
+    else:
+        raise ValueError("Variable 'lab08_event_types' must be a JSON array!")
 
     run_dbt_task = BashOperator(
         task_id='run_dbt_models',
