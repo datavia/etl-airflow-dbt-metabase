@@ -1,10 +1,12 @@
+import os
 from airflow import DAG
 from airflow.operators.python import PythonOperator
 from airflow.operators.dummy_operator import DummyOperator
+from airflow.operators.bash import BashOperator
 from functools import partial
 from datetime import datetime
+from airflow.models import Variable
 from scripts import load_stg_history
-# , finalize_stg_history
 
 default_args = {
     'owner': 'airflow',
@@ -18,7 +20,7 @@ default_args = {
 with DAG(
     'history_etl_pipeline',
     default_args=default_args,
-    description='Историческая загрузка S3 -> stg -> ods -> dds',
+    description='Историческая загрузка и обработка S3 -> stg -> ods -> dm',
     schedule_interval=None,
     max_active_runs=1,
     start_date=datetime(2025, 4, 4),
@@ -26,30 +28,33 @@ with DAG(
     tags=['manual', 'etl']
 ) as dag:
 
-    event_types = ['browser_events', 'device_events', 'geo_events', 'location_events']
+    event_types = Variable.get("lab08_event_types", default_var=None)
+    # event_types = ['browser_events', 'device_events', 'geo_events', 'location_events']
 
-    stg_tasks = []
+    load_data_tasks = []
 
     for event in event_types:
         task = PythonOperator(
             task_id=f'load_stg_{event}',
             python_callable=partial(load_stg_history.run_with_variables, event_type=event),
         )
-        stg_tasks.append(task)
-    
-    # finalize_tasks = []
+        load_data_tasks.append(task)
 
-    # for event in event_types:
-    #     task = PythonOperator(
-    #         task_id=f'finalize_{event}',
-    #         python_callable=partial(finalize_stg_history.finalize_tables, event_type=event),
-    #     )
-    #     finalize_tasks.append(task)
+    run_dbt_task = BashOperator(
+        task_id='run_dbt_models',
+        bash_command='echo $PATH && dbt run --profiles-dir /dbt --project-dir /dbt',
+        env={
+            'DBT_PROFILES_DIR': '/dbt',
+            'DBT_USER': os.environ.get('POSTGRES_LAB8_USER'),
+            'DBT_PASSWORD': os.environ.get('POSTGRES_LAB8_PASSWORD'),
+            'DBT_HOST': os.environ.get('POSTGRES_LAB8_HOST'),
+            'DBT_DATABASE': os.environ.get('POSTGRES_LAB8_DB'),
+            'DBT_SCHEMA': 'ods',
+            'PATH': '/root/.local/bin:' + os.environ.get('PATH', '').lstrip('/root/.local/bin:')
+        }
+    )
 
     start = DummyOperator(task_id="start",dag=dag)
     end = DummyOperator(task_id="end",dag=dag)
 
-    start >> stg_tasks >> end
-    # for stg_task, finalize_task in zip(stg_tasks, finalize_tasks):
-    #     stg_task >> finalize_task
-    # finalize_tasks >> end 
+    start >> load_data_tasks >> run_dbt_task >> end
