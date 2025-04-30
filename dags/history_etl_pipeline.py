@@ -30,11 +30,14 @@ with DAG(
 
     event_types = Variable.get(
         "lab08_event_types",
-        default=None,
+        default_var=None,
         deserialize_json=True
     )
 
     load_data_tasks = []
+
+    if event_types is None:
+        raise ValueError("Variable 'lab08_event_types' is not set!")
 
     if isinstance(event_types, list):
         for event in event_types:
