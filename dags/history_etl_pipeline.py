@@ -6,7 +6,7 @@ from airflow.operators.bash import BashOperator
 from functools import partial
 from datetime import datetime
 from airflow.models import Variable
-from scripts import load_stg_history
+from scripts import load_stg_history, remove_data
 
 default_args = {
     'owner': 'airflow',
@@ -35,6 +35,14 @@ with DAG(
         default_var=None,
         deserialize_json=True
     )
+
+    remove_data_task = PythonOperator(
+                task_id='remove_data',
+                python_callable=partial(
+                    remove_data.run_with_variables,
+                    event_types=event_types
+                ),  
+            )
 
     load_data_tasks = []
 
@@ -74,4 +82,4 @@ with DAG(
     start = DummyOperator(task_id="start",dag=dag)
     end = DummyOperator(task_id="end",dag=dag)
 
-    start >> load_data_tasks >> run_dbt_task >> end
+    start >> remove_data_task >> load_data_tasks >> run_dbt_task >> end
