@@ -27,6 +27,7 @@ services:
       - dags:/opt/airflow/dags
       - ./airflow_logs:/usr/local/airflow/logs
       - ./dbt:/dbt
+      - ./dbt_history:/dbt_history
     env_file:
       - .env
     ports:
@@ -49,6 +50,7 @@ services:
       - dags:/opt/airflow/dags
       - ./airflow_logs:/usr/local/airflow/logs
       - ./dbt:/dbt
+      - ./dbt_history:/dbt_history
     entrypoint: airflow scheduler
 
   airflow-init:
@@ -73,6 +75,7 @@ services:
       - dags:/opt/airflow/dags
       - ./airflow_logs:/usr/local/airflow/logs
       - ./dbt:/dbt
+      - ./dbt_history:/dbt_history
     env_file:
       - .env
     entrypoint: /entrypoint.sh

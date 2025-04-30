@@ -1,0 +1,31 @@
+version: 2
+
+sources:
+  - name: stg
+    schema: stg
+    freshness:
+      warn_after:
+        count: 1
+        period: day
+    loaded_at_field: load_dttm::timestamp
+    tables:
+      - name: stg_browser_events
+        description: Информация о просмотрах браузера
+        columns: &stg_columns
+          - name: load_id
+            description: Идентификатор загрузки
+          - name: load_dttm
+            description: Время загрузки
+          - name: source_name
+            description: Источник
+          - name: json_data
+            description: Данные в формате JSON
+      - name: stg_location_events
+        description: Положение пользователя на сайте и информация о том, откуда пользователь попал на страницу
+        columns: *stg_columns
+      - name: stg_geo_events
+        description: Локация пользователя
+        columns: *stg_columns
+      - name: stg_device_events
+        description: Устройства, с которых пользователи пользовались сайтом
+        columns: *stg_columns

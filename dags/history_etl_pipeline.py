@@ -28,6 +28,8 @@ with DAG(
     tags=['manual', 'etl']
 ) as dag:
 
+    start_date = Variable.get("lab08_start_date", default_var=None)
+    end_date = Variable.get("lab08_end_date", default_var=None)
     event_types = Variable.get(
         "lab08_event_types",
         default_var=None,
@@ -54,7 +56,10 @@ with DAG(
 
     run_dbt_task = BashOperator(
         task_id='run_dbt_models',
-        bash_command='echo $PATH && dbt run --profiles-dir /dbt --project-dir /dbt',
+        bash_command=f"""dbt run --profiles-dir /dbt_history \
+                            --project-dir /dbt_history \
+                            --vars '{{"start_date": "{start_date}", "end_date": "{end_date}"}}'
+                    """,
         env={
             'DBT_PROFILES_DIR': '/dbt',
             'DBT_USER': os.environ.get('POSTGRES_LAB8_USER'),

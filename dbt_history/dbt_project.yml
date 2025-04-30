@@ -1,0 +1,39 @@
+name: 'dbt_lab08_project'
+version: '1.0.0'
+
+profile: 'dbt_lab08_project'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  dbt_lab08_project:
+    ods:
+      +tags: ods
+      +schema: ods
+      +materialized: incremental
+      +meta:
+        owner: "Юлия"
+    dm:
+      +tags: dm
+      +schema: dm
+      +materialized: incremental
+      +indexes:
+        - columns: [event_timestamp]
+          type: btree
+      +meta:
+        owner: "Александр"
+seeds:
+  dbt_lab08_project:
+    dictionaries:
+      +schema: ods
+      +meta:
+        owner: "Александр"

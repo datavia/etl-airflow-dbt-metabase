@@ -1,0 +1,27 @@
+version: 2
+
+seeds:
+  - name: italian_cities
+    description: Информация о городах
+    columns:
+      - name: city_en
+        description: Название города на английском
+        tests:
+          - not_null
+          - unique
+      - name: city_ru
+        description: Название города на русском
+        tests:
+          - not_null
+  - name: items
+    description: Информация о товарах
+    columns:
+      - name: item_en
+        description: Название товара на английском
+        tests:
+          - not_null
+          - unique
+      - name: item_ru
+        description: Название товара на русском
+        tests:
+          - not_null
