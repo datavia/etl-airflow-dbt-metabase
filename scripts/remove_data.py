@@ -29,13 +29,13 @@ def run(start_date: str, end_date: str, event_types: str):
     cursor = conn_pg.cursor()
 
     for event_type in event_types:
-        cursor.execute(f"""DELETE FROM stg.stg_{event_type} WHERE load_dttm >= {start_date} and load_dttm < {end_date}""")
-        cursor.execute(f"""DELETE FROM ods.ods_{event_type} WHERE load_hour >= {start_date} and load_hour < {end_date}""")
+        cursor.execute(f"""DELETE FROM stg.stg_{event_type} WHERE load_dttm >= '{start_date}' and load_dttm < '{end_date}'""")
+        cursor.execute(f"""DELETE FROM ods.ods_{event_type} WHERE load_hour >= '{start_date}' and load_hour < '{end_date}'""")
         conn_pg.commit()
         print(f"Deleted for {event_type}")
 
-    cursor.execute(f"""DELETE FROM dm.dm_events WHERE load_hour >= {start_date} and load_hour < {end_date}""")
-    cursor.execute(f"""DELETE FROM dm.dm_sales WHERE load_hour >= {start_date} and load_hour < {end_date}""")
+    cursor.execute(f"""DELETE FROM dm.dm_events WHERE load_hour >= '{start_date}' and load_hour < '{end_date}'""")
+    cursor.execute(f"""DELETE FROM dm.dm_sales WHERE load_hour >= '{start_date}' and load_hour < '{end_date}'""")
 
     conn_pg.commit()
     cursor.close()
